@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Genomics Research & Diagnostics Centre - Trusted Diagnostic & Pathology Services in Karnal, Haryana">
+    <title>Genomics Research & Diagnostics Centre | Medical Laboratory</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage"></span>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <img src="logo.png" alt="Genomics Centre Logo" class="nav-logo">
+                <span>Genomics Centre</span>
+            </div>
+            <button class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About Us</a></li>
+                <li><a href="#tests" class="nav-link">Lab Tests</a></li>
+                <li><a href="#why-choose" class="nav-link">Why Choose Us</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title animate-fade-in">Genomics Research & Diagnostics Centre</h1>
+                <p class="hero-subtitle animate-fade-in-delay">Trusted Diagnostic & Pathology Services</p>
+                <p class="hero-description animate-fade-in-delay-2">Accurate Results | Modern Equipment | Expert Care</p>
+            </div>
+        </div>
+        <div class="hero-wave">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                <path fill="#ffffff" fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,138.7C960,139,1056,117,1152,106.7C1248,96,1344,96,1392,96L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">About Us</span>
+                <h2 class="section-title">Welcome to Genomics Research & Diagnostics Centre</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="about-main">
+                        Genomics Research & Diagnostic Centre in Vasant Vihar, Karnal is dedicated to delivering reliable and high-quality diagnostic and lab testing services. With a team of experienced professionals, a wide range of diagnostic options, and a reputation for precision, Genomics Research & Diagnostic Centre ensures that every patient and client receives the care, accuracy, and efficiency they deserve.
+                    </p>
+                    <p class="about-description">
+                        For healthcare and diagnostic solutions in Karnal, Genomics Research & Diagnostic Centre remains a trusted provider, committed to excellence in every aspect of patient and client care.
+                    </p>
+                </div>
+                <div class="about-image">
+                    <div class="image-placeholder">
+                        <i class="fas fa-hospital"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lab Tests Section -->
+    <section class="tests" id="tests">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Our Services</span>
+                <h2 class="section-title">Available Lab Tests</h2>
+                <div class="section-divider"></div>
+            </div>
+
+            <!-- Filter and Sort Controls -->
+            <div class="tests-controls">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchTests" placeholder="Search for tests..." />
+                </div>
+                <div class="sort-box">
+                    <label for="sortTests">
+                        <i class="fas fa-sort-amount-down"></i> Sort by:
+                    </label>
+                    <select id="sortTests">
+                        <option value="default">Default</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="name">Name: A to Z</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Tests Grid -->
+            <div class="tests-grid" id="testsGrid">
+                <!-- DNA Wellness Test -->
+                <div class="test-card" data-name="DNA Wellness Test" data-price="14000">
+                    <div class="test-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <h3 class="test-name">DNA Wellness Test</h3>
+                    <p class="test-description">Comprehensive DNA analysis for wellness insights with optional add-ons.</p>
+                    <div class="price-section">
+                        <div class="price-item">
+                            <span class="price-label">Individual</span>
+                            <span class="test-price">₹14,000</span>
+                        </div>
+                        <div class="price-item">
+                            <span class="price-label">Partner</span>
+                            <span class="test-price partner-price">₹11,200</span>
+                        </div>
+                    </div>
+                    
+                    <div class="pricing-type-selector">
+                        <label class="pricing-option">
+                            <input type="radio" name="dna-pricing" value="individual" data-price="14000" data-addon-price="3500" checked>
+                            <span>Individual Pricing</span>
+                        </label>
+                        <label class="pricing-option">
+                            <input type="radio" name="dna-pricing" value="partner" data-price="11200" data-addon-price="2500">
+                            <span>Partner Pricing</span>
+                        </label>
+                    </div>
+                    
+                    <div class="addons-section">
+                        <p class="addons-title"><i class="fas fa-plus-circle"></i> Optional Add-ons:</p>
+                        <div class="addons-grid">
+                            <label class="addon-item">
+                                <input type="checkbox" class="addon-checkbox" data-addon="Kidney Health">
+                                <span class="addon-name">Kidney Health</span>
+                            </label>
+                            <label class="addon-item">
+                                <input type="checkbox" class="addon-checkbox" data-addon="Cardiomet">
+                                <span class="addon-name">Cardiomet</span>
+                            </label>
+                            <label class="addon-item">
+                                <input type="checkbox" class="addon-checkbox" data-addon="Autoimmune">
+                                <span class="addon-name">Autoimmune</span>
+                            </label>
+                            <label class="addon-item">
+                                <input type="checkbox" class="addon-checkbox" data-addon="Skin">
+                                <span class="addon-name">Skin</span>
+                            </label>
+                            <label class="addon-item">
+                                <input type="checkbox" class="addon-checkbox" data-addon="Immunity">
+                                <span class="addon-name">Immunity</span>
+                            </label>
+                            <label class="addon-item">
+                                <input type="checkbox" class="addon-checkbox" data-addon="Sleep">
+                                <span class="addon-name">Sleep</span>
+                            </label>
+                        </div>
+                    </div>
+                    <button class="btn btn-book" onclick="openDNAWellnessModal()">
+                        <i class="fas fa-calendar-check"></i> Book Now
+                    </button>
+                </div>
+
+                <!-- Sample Viability -->
+                <div class="test-card" data-name="Sample Viability" data-price="10000">
+                    <div class="test-icon">
+                        <i class="fas fa-vial"></i>
+                    </div>
+                    <h3 class="test-name">Sample Viability</h3>
+                    <p class="test-description">Assessment of sample quality and viability for genetic testing to ensure accurate results.</p>
+                    <div class="price-section">
+                        <div class="price-item">
+                            <span class="price-label">Individual</span>
+                            <span class="test-price">₹10,000</span>
+                        </div>
+                        <div class="price-item">
+                            <span class="price-label">Partner</span>
+                            <span class="test-price partner-price">₹5,000</span>
+                        </div>
+                    </div>
+                    <div class="pricing-type-selector">
+                        <label class="pricing-option">
+                            <input type="radio" name="sample-viability-pricing" value="individual" data-price="10000" checked>
+                            <span>Individual</span>
+                        </label>
+                        <label class="pricing-option">
+                            <input type="radio" name="sample-viability-pricing" value="partner" data-price="5000">
+                            <span>Partner</span>
+                        </label>
+                    </div>
+                    <button class="btn btn-book" onclick="openTestWithPricing('Sample Viability', 'sample-viability-pricing')">
+                        <i class="fas fa-calendar-check"></i> Book Now
+                    </button>
+                </div>
+
+                <!-- STR Analysis -->
+                <div class="test-card" data-name="STR Analysis" data-price="8000">
+                    <div class="test-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <h3 class="test-name">STR Analysis</h3>
+                    <p class="test-description">Short Tandem Repeat analysis for DNA profiling, identity verification, and relationship testing.</p>
+                    <div class="price-section">
+                        <div class="price-item">
+                            <span class="price-label">Individual</span>
+                            <span class="test-price">₹8,000</span>
+                        </div>
+                        <div class="price-item">
+                            <span class="price-label">Partner</span>
+                            <span class="test-price partner-price">₹6,400</span>
+                        </div>
+                    </div>
+                    <div class="pricing-type-selector">
+                        <label class="pricing-option">
+                            <input type="radio" name="str-analysis-pricing" value="individual" data-price="8000" checked>
+                            <span>Individual</span>
+                        </label>
+                        <label class="pricing-option">
+                            <input type="radio" name="str-analysis-pricing" value="partner" data-price="6400">
+                            <span>Partner</span>
+                        </label>
+                    </div>
+                    <button class="btn btn-book" onclick="openTestWithPricing('STR Analysis', 'str-analysis-pricing')">
+                        <i class="fas fa-calendar-check"></i> Book Now
+                    </button>
+                </div>
+
+                <!-- Paternity Test -->
+                <div class="test-card" data-name="Paternity Test" data-price="12000">
+                    <div class="test-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="test-name">Paternity Test</h3>
+                    <p class="test-description">Accurate DNA testing to establish biological relationship between father and child (2 samples).</p>
+                    <div class="price-section">
+                        <div class="price-item">
+                            <span class="price-label">Individual</span>
+                            <span class="test-price">₹12,000</span>
+                        </div>
+                        <div class="price-item">
+                            <span class="price-label">Partner</span>
+                            <span class="test-price partner-price">₹9,600</span>
+                        </div>
+                    </div>
+                    <div class="pricing-type-selector">
+                        <label class="pricing-option">
+                            <input type="radio" name="paternity-test-pricing" value="individual" data-price="12000" checked>
+                            <span>Individual</span>
+                        </label>
+                        <label class="pricing-option">
+                            <input type="radio" name="paternity-test-pricing" value="partner" data-price="9600">
+                            <span>Partner</span>
+                        </label>
+                    </div>
+                    <button class="btn btn-book" onclick="openTestWithPricing('Paternity Test', 'paternity-test-pricing')">
+                        <i class="fas fa-calendar-check"></i> Book Now
+                    </button>
+                </div>
+
+                <!-- Prenatal Paternity -->
+                <div class="test-card" data-name="Prenatal Paternity" data-price="130000">
+                    <div class="test-icon">
+                        <i class="fas fa-baby"></i>
+                    </div>
+                    <h3 class="test-name">Prenatal Paternity</h3>
+                    <p class="test-description">Non-invasive prenatal paternity testing performed during pregnancy with high accuracy.</p>
+                    <div class="price-section">
+                        <div class="price-item">
+                            <span class="price-label">Individual</span>
+                            <span class="test-price">₹1,30,000</span>
+                        </div>
+                        <div class="price-item">
+                            <span class="price-label">Partner</span>
+                            <span class="test-price partner-price">₹1,17,000</span>
+                        </div>
+                    </div>
+                    <div class="pricing-type-selector">
+                        <label class="pricing-option">
+                            <input type="radio" name="prenatal-paternity-pricing" value="individual" data-price="130000" checked>
+                            <span>Individual</span>
+                        </label>
+                        <label class="pricing-option">
+                            <input type="radio" name="prenatal-paternity-pricing" value="partner" data-price="117000">
+                            <span>Partner</span>
+                        </label>
+                    </div>
+                    <button class="btn btn-book" onclick="openTestWithPricing('Prenatal Paternity', 'prenatal-paternity-pricing')">
+                        <i class="fas fa-calendar-check"></i> Book Now
+                    </button>
+                </div>
+
+                <!-- Maternity Test -->
+                <div class="test-card" data-name="Maternity Test" data-price="12000">
+                    <div class="test-icon">
+                        <i class="fas fa-female"></i>
+                    </div>
+                    <h3 class="test-name">Maternity Test</h3>
+                    <p class="test-description">DNA testing to confirm biological relationship between mother and child (2 samples).</p>
+                    <div class="price-section">
+                        <div class="price-item">
+                            <span class="price-label">Individual</span>
+                            <span class="test-price">₹12,000</span>
+                        </div>
+                        <div class="price-item">
+                            <span class="price-label">Partner</span>
+                            <span class="test-price partner-price">₹9,600</span>
+                        </div>
+                    </div>
+                    <div class="pricing-type-selector">
+                        <label class="pricing-option">
+                            <input type="radio" name="maternity-test-pricing" value="individual" data-price="12000" checked>
+                            <span>Individual</span>
+                        </label>
+                        <label class="pricing-option">
+                            <input type="radio" name="maternity-test-pricing" value="partner" data-price="9600">
+                            <span>Partner</span>
+                        </label>
+                    </div>
+                    <button class="btn btn-book" onclick="openTestWithPricing('Maternity Test', 'maternity-test-pricing')">
+                        <i class="fas fa-calendar-check"></i> Book Now
+                    </button>
+                </div>
+
+                <!-- Siblings Test -->
+                <div class="test-card" data-name="Siblings Test" data-price="18000">
+                    <div class="test-icon">
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <h3 class="test-name">Siblings Test</h3>
+                    <p class="test-description">DNA analysis to determine sibling relationships and shared biological parents (2 samples).</p>
+                    <div class="price-section">
+                        <div class="price-item">
+                            <span class="price-label">Individual</span>
+                            <span class="test-price">₹18,000</span>
+                        </div>
+                        <div class="price-item">
+                            <span class="price-label">Partner</span>
+                            <span class="test-price partner-price">₹14,400</span>
+                        </div>
+                    </div>
+                    <div class="pricing-type-selector">
+                        <label class="pricing-option">
+                            <input type="radio" name="siblings-test-pricing" value="individual" data-price="18000" checked>
+                            <span>Individual</span>
+                        </label>
+                        <label class="pricing-option">
+                            <input type="radio" name="siblings-test-pricing" value="partner" data-price="14400">
+                            <span>Partner</span>
+                        </label>
+                    </div>
+                    <button class="btn btn-book" onclick="openTestWithPricing('Siblings Test', 'siblings-test-pricing')">
+                        <i class="fas fa-calendar-check"></i> Book Now
+                    </button>
+                </div>
+
+                <!-- Grandparentage Test -->
+                <div class="test-card" data-name="Grandparentage Test" data-price="18000">
+                    <div class="test-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="test-name">Grandparentage Test</h3>
+                    <p class="test-description">DNA testing to establish biological relationship between grandparents and grandchild (2 samples).</p>
+                    <div class="price-section">
+                        <div class="price-item">
+                            <span class="price-label">Individual</span>
+                            <span class="test-price">₹18,000</span>
+                        </div>
+                        <div class="price-item">
+                            <span class="price-label">Partner</span>
+                            <span class="test-price partner-price">₹14,400</span>
+                        </div>
+                    </div>
+                    <div class="pricing-type-selector">
+                        <label class="pricing-option">
+                            <input type="radio" name="grandparentage-test-pricing" value="individual" data-price="18000" checked>
+                            <span>Individual</span>
+                        </label>
+                        <label class="pricing-option">
+                            <input type="radio" name="grandparentage-test-pricing" value="partner" data-price="14400">
+                            <span>Partner</span>
+                        </label>
+                    </div>
+                    <button class="btn btn-book" onclick="openTestWithPricing('Grandparentage Test', 'grandparentage-test-pricing')">
+                        <i class="fas fa-calendar-check"></i> Book Now
+                    </button>
+                </div>
+
+                <!-- Avuncular Test -->
+                <div class="test-card" data-name="Avuncular Test" data-price="18000">
+                    <div class="test-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <h3 class="test-name">Avuncular Test</h3>
+                    <p class="test-description">DNA testing to determine aunt/uncle relationship with niece/nephew (2 samples).</p>
+                    <div class="price-section">
+                        <div class="price-item">
+                            <span class="price-label">Individual</span>
+                            <span class="test-price">₹18,000</span>
+                        </div>
+                        <div class="price-item">
+                            <span class="price-label">Partner</span>
+                            <span class="test-price partner-price">₹14,400</span>
+                        </div>
+                    </div>
+                    <div class="pricing-type-selector">
+                        <label class="pricing-option">
+                            <input type="radio" name="avuncular-test-pricing" value="individual" data-price="18000" checked>
+                            <span>Individual</span>
+                        </label>
+                        <label class="pricing-option">
+                            <input type="radio" name="avuncular-test-pricing" value="partner" data-price="14400">
+                            <span>Partner</span>
+                        </label>
+                    </div>
+                    <button class="btn btn-book" onclick="openTestWithPricing('Avuncular Test', 'avuncular-test-pricing')">
+                        <i class="fas fa-calendar-check"></i> Book Now
+                    </button>
+                </div>
+
+                <!-- YSTR Analysis -->
+                <div class="test-card" data-name="YSTR Analysis" data-price="20000">
+                    <div class="test-icon">
+                        <i class="fas fa-mars"></i>
+                    </div>
+                    <h3 class="test-name">YSTR Analysis</h3>
+                    <p class="test-description">Y-chromosome STR analysis for paternal lineage testing and male ancestry determination.</p>
+                    <div class="price-section">
+                        <div class="price-item">
+                            <span class="price-label">Individual</span>
+                            <span class="test-price">₹20,000</span>
+                        </div>
+                        <div class="price-item">
+                            <span class="price-label">Partner</span>
+                            <span class="test-price partner-price">₹16,000</span>
+                        </div>
+                    </div>
+                    <div class="pricing-type-selector">
+                        <label class="pricing-option">
+                            <input type="radio" name="ystr-analysis-pricing" value="individual" data-price="20000" checked>
+                            <span>Individual</span>
+                        </label>
+                        <label class="pricing-option">
+                            <input type="radio" name="ystr-analysis-pricing" value="partner" data-price="16000">
+                            <span>Partner</span>
+                        </label>
+                    </div>
+                    <button class="btn btn-book" onclick="openTestWithPricing('YSTR Analysis', 'ystr-analysis-pricing')">
+                        <i class="fas fa-calendar-check"></i> Book Now
+                    </button>
+                </div>
+
+                <!-- mt DNA Analysis -->
+                <div class="test-card" data-name="mt DNA Analysis" data-price="30000">
+                    <div class="test-icon">
+                        <i class="fas fa-venus"></i>
+                    </div>
+                    <h3 class="test-name">mt DNA Analysis</h3>
+                    <p class="test-description">Mitochondrial DNA analysis for maternal lineage testing and ancestry determination.</p>
+                    <div class="price-section">
+                        <div class="price-item">
+                            <span class="price-label">Individual</span>
+                            <span class="test-price">₹30,000</span>
+                        </div>
+                        <div class="price-item">
+                            <span class="price-label">Partner</span>
+                            <span class="test-price partner-price">₹24,000</span>
+                        </div>
+                    </div>
+                    <div class="pricing-type-selector">
+                        <label class="pricing-option">
+                            <input type="radio" name="mtdna-analysis-pricing" value="individual" data-price="30000" checked>
+                            <span>Individual</span>
+                        </label>
+                        <label class="pricing-option">
+                            <input type="radio" name="mtdna-analysis-pricing" value="partner" data-price="24000">
+                            <span>Partner</span>
+                        </label>
+                    </div>
+                    <button class="btn btn-book" onclick="openTestWithPricing('mt DNA Analysis', 'mtdna-analysis-pricing')">
+                        <i class="fas fa-calendar-check"></i> Book Now
+                    </button>
+                </div>
+
+                <!-- Legal/Transplant Autosomal Analysis -->
+                <div class="test-card" data-name="Legal/Transplant Autosomal Analysis" data-price="25000">
+                    <div class="test-icon">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                    <h3 class="test-name">Legal/Transplant Autosomal Analysis</h3>
+                    <p class="test-description">Court-admissible DNA testing for legal purposes and transplant compatibility (2 samples).</p>
+                    <div class="price-section">
+                        <div class="price-item">
+                            <span class="price-label">Individual</span>
+                            <span class="test-price">₹25,000</span>
+                        </div>
+                        <div class="price-item">
+                            <span class="price-label">Partner</span>
+                            <span class="test-price partner-price">₹20,000</span>
+                        </div>
+                    </div>
+                    <div class="pricing-type-selector">
+                        <label class="pricing-option">
+                            <input type="radio" name="legal-autosomal-pricing" value="individual" data-price="25000" checked>
+                            <span>Individual</span>
+                        </label>
+                        <label class="pricing-option">
+                            <input type="radio" name="legal-autosomal-pricing" value="partner" data-price="20000">
+                            <span>Partner</span>
+                        </label>
+                    </div>
+                    <button class="btn btn-book" onclick="openTestWithPricing('Legal/Transplant Autosomal Analysis', 'legal-autosomal-pricing')">
+                        <i class="fas fa-calendar-check"></i> Book Now
+                    </button>
+                </div>
+
+                <!-- Legal/Transplant YSTR Analysis -->
+                <div class="test-card" data-name="Legal/Transplant YSTR Analysis" data-price="27000">
+                    <div class="test-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3 class="test-name">Legal/Transplant YSTR Analysis</h3>
+                    <p class="test-description">Court-admissible Y-chromosome analysis for legal cases and transplant verification (2 samples).</p>
+                    <div class="price-section">
+                        <div class="price-item">
+                            <span class="price-label">Individual</span>
+                            <span class="test-price">₹27,000</span>
+                        </div>
+                        <div class="price-item">
+                            <span class="price-label">Partner</span>
+                            <span class="test-price partner-price">₹21,600</span>
+                        </div>
+                    </div>
+                    <div class="pricing-type-selector">
+                        <label class="pricing-option">
+                            <input type="radio" name="legal-ystr-pricing" value="individual" data-price="27000" checked>
+                            <span>Individual</span>
+                        </label>
+                        <label class="pricing-option">
+                            <input type="radio" name="legal-ystr-pricing" value="partner" data-price="21600">
+                            <span>Partner</span>
+                        </label>
+                    </div>
+                    <button class="btn btn-book" onclick="openTestWithPricing('Legal/Transplant YSTR Analysis', 'legal-ystr-pricing')">
+                        <i class="fas fa-calendar-check"></i> Book Now
+                    </button>
+                </div>
+
+                <!-- Legal/Transplant mtDNA Analysis -->
+                <div class="test-card" data-name="Legal/Transplant mtDNA Analysis" data-price="30000">
+                    <div class="test-icon">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <h3 class="test-name">Legal/Transplant mtDNA Analysis</h3>
+                    <p class="test-description">Court-admissible mitochondrial DNA testing for legal purposes and transplant verification (2 samples).</p>
+                    <div class="price-section">
+                        <div class="price-item">
+                            <span class="price-label">Individual</span>
+                            <span class="test-price">₹30,000</span>
+                        </div>
+                        <div class="price-item">
+                            <span class="price-label">Partner</span>
+                            <span class="test-price partner-price">₹24,000</span>
+                        </div>
+                    </div>
+                    <div class="pricing-type-selector">
+                        <label class="pricing-option">
+                            <input type="radio" name="legal-mtdna-pricing" value="individual" data-price="30000" checked>
+                            <span>Individual</span>
+                        </label>
+                        <label class="pricing-option">
+                            <input type="radio" name="legal-mtdna-pricing" value="partner" data-price="24000">
+                            <span>Partner</span>
+                        </label>
+                    </div>
+                    <button class="btn btn-book" onclick="openTestWithPricing('Legal/Transplant mtDNA Analysis', 'legal-mtdna-pricing')">
+                        <i class="fas fa-calendar-check"></i> Book Now
+                    </button>
+                </div>
+
+                <!-- Prenatal Paternity + NIPT -->
+                <div class="test-card" data-name="Prenatal Paternity + NIPT" data-price="120000">
+                    <div class="test-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3 class="test-name">Prenatal Paternity + NIPT</h3>
+                    <p class="test-description">Combined prenatal paternity testing with Non-Invasive Prenatal Testing (LNIPPT + NIPT PLUS).</p>
+                    <div class="test-price">₹1,20,000</div>
+                    <button class="btn btn-book" onclick="openBookingModal('Prenatal Paternity + NIPT', '120000')">
+                        <i class="fas fa-calendar-check"></i> Book Now
+                    </button>
+                </div>
+
+                <!-- Whole Genome Sequencing -->
+                <div class="test-card" data-name="Whole Genome Sequencing" data-price="30000">
+                    <div class="test-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <h3 class="test-name">Whole Genome Sequencing</h3>
+                    <p class="test-description">Complete analysis of your entire genome for comprehensive genetic insights and health screening.</p>
+                    <div class="test-price">₹30,000</div>
+                    <button class="btn btn-book" onclick="openBookingModal('Whole Genome Sequencing', '30000')">
+                        <i class="fas fa-calendar-check"></i> Book Now
+                    </button>
+                </div>
+
+                <!-- Infertility NGS Panel -->
+                <div class="test-card" data-name="Infertility NGS Panel" data-price="25000">
+                    <div class="test-icon">
+                        <i class="fas fa-child"></i>
+                    </div>
+                    <h3 class="test-name">Infertility NGS Panel</h3>
+                    <p class="test-description">Next-generation sequencing panel for comprehensive genetic analysis of infertility causes.</p>
+                    <div class="test-price">₹25,000</div>
+                    <button class="btn btn-book" onclick="openBookingModal('Infertility NGS Panel', '25000')">
+                        <i class="fas fa-calendar-check"></i> Book Now
+                    </button>
+                </div>
+
+                <!-- Chromosomal Microarray (CMA) -->
+                <div class="test-card" data-name="Chromosomal Microarray (CMA)" data-price="25000">
+                    <div class="test-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3 class="test-name">Chromosomal Microarray (CMA)</h3>
+                    <p class="test-description">Advanced genetic test to detect chromosomal abnormalities and copy number variations.</p>
+                    <div class="test-price">₹25,000</div>
+                    <button class="btn btn-book" onclick="openBookingModal('Chromosomal Microarray (CMA)', '25000')">
+                        <i class="fas fa-calendar-check"></i> Book Now
+                    </button>
+                </div>
+
+                <!-- Karyotyping (H & F) -->
+                <div class="test-card" data-name="Karyotyping (H & F)" data-price="7000">
+                    <div class="test-icon">
+                        <i class="fas fa-chromosome"></i>
+                    </div>
+                    <h3 class="test-name">Karyotyping (H & F)</h3>
+                    <p class="test-description">Chromosome analysis for husband and wife to detect genetic abnormalities and disorders.</p>
+                    <div class="test-price">₹7,000</div>
+                    <button class="btn btn-book" onclick="openBookingModal('Karyotyping (H & F)', '7000')">
+                        <i class="fas fa-calendar-check"></i> Book Now
+                    </button>
+                </div>
+
+                <!-- POC by NGS -->
+                <div class="test-card" data-name="POC by NGS" data-price="12000">
+                    <div class="test-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <h3 class="test-name">POC by NGS</h3>
+                    <p class="test-description">Products of Conception analysis using Next-Generation Sequencing for pregnancy loss evaluation.</p>
+                    <div class="test-price">₹12,000</div>
+                    <button class="btn btn-book" onclick="openBookingModal('POC by NGS', '12000')">
+                        <i class="fas fa-calendar-check"></i> Book Now
+                    </button>
+                </div>
+
+                <!-- Embrology by NGS -->
+                <div class="test-card" data-name="Embrology by NGS" data-price="32000">
+                    <div class="test-icon">
+                        <i class="fas fa-egg"></i>
+                    </div>
+                    <h3 class="test-name">Embrology by NGS</h3>
+                    <p class="test-description">Embryo genetic screening using Next-Generation Sequencing for IVF and fertility treatment.</p>
+                    <div class="test-price">₹32,000</div>
+                    <button class="btn btn-book" onclick="openBookingModal('Embrology by NGS', '32000')">
+                        <i class="fas fa-calendar-check"></i> Book Now
+                    </button>
+                </div>
+
+                <!-- Heredatory Panel -->
+                <div class="test-card" data-name="Heredatory Panel" data-price="35000">
+                    <div class="test-icon">
+                        <i class="fas fa-sitemap"></i>
+                    </div>
+                    <h3 class="test-name">Heredatory Panel</h3>
+                    <p class="test-description">Comprehensive genetic panel for inherited disease screening and family health assessment.</p>
+                    <div class="test-price">₹35,000</div>
+                    <button class="btn btn-book" onclick="openBookingModal('Heredatory Panel', '35000')">
+                        <i class="fas fa-calendar-check"></i> Book Now
+                    </button>
+                </div>
+
+                <!-- Multigene Panel (72 Gene) -->
+                <div class="test-card" data-name="Multigene Panel (72 Gene)" data-price="35000">
+                    <div class="test-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <h3 class="test-name">Multigene Panel (72 Gene)</h3>
+                    <p class="test-description">Analysis of 72 genes for comprehensive genetic disease screening and risk assessment.</p>
+                    <div class="test-price">₹35,000</div>
+                    <button class="btn btn-book" onclick="openBookingModal('Multigene Panel (72 Gene)', '35000')">
+                        <i class="fas fa-calendar-check"></i> Book Now
+                    </button>
+                </div>
+
+                <!-- Multigene Panel (350 Gene) -->
+                <div class="test-card" data-name="Multigene Panel (350 Gene)" data-price="65000">
+                    <div class="test-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <h3 class="test-name">Multigene Panel (350 Gene)</h3>
+                    <p class="test-description">Expanded analysis of 350 genes for extensive genetic screening and health insights.</p>
+                    <div class="test-price">₹65,000</div>
+                    <button class="btn btn-book" onclick="openBookingModal('Multigene Panel (350 Gene)', '65000')">
+                        <i class="fas fa-calendar-check"></i> Book Now
+                    </button>
+                </div>
+
+                <!-- Multigene Panel (1212 Gene) -->
+                <div class="test-card" data-name="Multigene Panel (1212 Gene)" data-price="150000">
+                    <div class="test-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <h3 class="test-name">Multigene Panel (1212 Gene)</h3>
+                    <p class="test-description">Most comprehensive genetic panel analyzing 1212 genes for complete health assessment.</p>
+                    <div class="test-price">₹1,50,000</div>
+                    <button class="btn btn-book" onclick="openBookingModal('Multigene Panel (1212 Gene)', '150000')">
+                        <i class="fas fa-calendar-check"></i> Book Now
+                    </button>
+                </div>
+
+                <!-- NIPT -->
+                <div class="test-card" data-name="NIPT" data-price="14000">
+                    <div class="test-icon">
+                        <i class="fas fa-baby-carriage"></i>
+                    </div>
+                    <h3 class="test-name">NIPT</h3>
+                    <p class="test-description">Non-Invasive Prenatal Testing for chromosomal abnormalities screening during pregnancy.</p>
+                    <div class="test-price">₹14,000</div>
+                    <button class="btn btn-book" onclick="openBookingModal('NIPT', '14000')">
+                        <i class="fas fa-calendar-check"></i> Book Now
+                    </button>
+                </div>
+            </div>
+
+            <div class="no-results" id="noResults" style="display: none;">
+                <i class="fas fa-search"></i>
+                <p>No tests found matching your search.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Form Section -->
+    <section class="booking-section" id="booking-form">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Book Your Test</span>
+                <h2 class="section-title">Send Us Your Enquiry</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="booking-form-wrapper">
+                <form class="booking-form" id="bookingForm">
+                    <div class="form-group">
+                        <label for="fullName">
+                            <i class="fas fa-user"></i> Full Name *
+                        </label>
+                        <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
+                        <span class="error-message"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">
+                            <i class="fas fa-envelope"></i> Email Address *
+                        </label>
+                        <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                        <span class="error-message"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mobile">
+                            <i class="fas fa-phone"></i> Mobile Number *
+                        </label>
+                        <input type="tel" id="mobile" name="mobile" required placeholder="+91 XXXXXXXXXX" pattern="[+]?[0-9]{10,13}">
+                        <span class="error-message"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="testName">
+                            <i class="fas fa-flask"></i> Selected Test *
+                        </label>
+                        <select id="testName" name="testName" required>
+                            <option value="">-- Select a Test --</option>
+                            <option value="DNA Wellness Test">DNA Wellness Test - ₹14,000</option>
+                            <option value="Sample Viability">Sample Viability - ₹10,000</option>
+                            <option value="STR Analysis">STR Analysis - ₹8,000</option>
+                            <option value="Paternity Test">Paternity Test - ₹12,000</option>
+                            <option value="Prenatal Paternity">Prenatal Paternity - ₹1,30,000</option>
+                            <option value="Maternity Test">Maternity Test - ₹12,000</option>
+                            <option value="Siblings Test">Siblings Test - ₹18,000</option>
+                            <option value="Grandparentage Test">Grandparentage Test - ₹18,000</option>
+                            <option value="Avuncular Test">Avuncular Test - ₹18,000</option>
+                            <option value="YSTR Analysis">YSTR Analysis - ₹20,000</option>
+                            <option value="mt DNA Analysis">mt DNA Analysis - ₹30,000</option>
+                            <option value="Legal/Transplant Autosomal Analysis">Legal/Transplant Autosomal Analysis - ₹25,000</option>
+                            <option value="Legal/Transplant YSTR Analysis">Legal/Transplant YSTR Analysis - ₹27,000</option>
+                            <option value="Legal/Transplant mtDNA Analysis">Legal/Transplant mtDNA Analysis - ₹30,000</option>
+                            <option value="Prenatal Paternity + NIPT">Prenatal Paternity + NIPT - ₹1,20,000</option>
+                            <option value="Whole Genome Sequencing">Whole Genome Sequencing - ₹30,000</option>
+                            <option value="Infertility NGS Panel">Infertility NGS Panel - ₹25,000</option>
+                            <option value="Chromosomal Microarray (CMA)">Chromosomal Microarray (CMA) - ₹25,000</option>
+                            <option value="Karyotyping (H & F)">Karyotyping (H & F) - ₹7,000</option>
+                            <option value="POC by NGS">POC by NGS - ₹12,000</option>
+                            <option value="Embrology by NGS">Embrology by NGS - ₹32,000</option>
+                            <option value="Heredatory Panel">Heredatory Panel - ₹35,000</option>
+                            <option value="Multigene Panel (72 Gene)">Multigene Panel (72 Gene) - ₹35,000</option>
+                            <option value="Multigene Panel (350 Gene)">Multigene Panel (350 Gene) - ₹65,000</option>
+                            <option value="Multigene Panel (1212 Gene)">Multigene Panel (1212 Gene) - ₹1,50,000</option>
+                            <option value="NIPT">NIPT - ₹14,000</option>
+                        </select>
+                        <span class="error-message"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">
+                            <i class="fas fa-comment-alt"></i> Message / Notes
+                        </label>
+                        <textarea id="message" name="message" rows="4" placeholder="Any specific requirements or questions..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-submit">
+                        <i class="fas fa-paper-plane"></i> Send Enquiry
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="why-choose" id="why-choose">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Why Choose Us</span>
+                <h2 class="section-title">Your Trusted Healthcare Partner</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3 class="feature-title">100% Accuracy</h3>
+                    <p class="feature-description">
+                        State-of-the-art equipment and stringent quality control measures ensure precise and reliable results every time.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 class="feature-title">Fast Reports</h3>
+                    <p class="feature-description">
+                        Quick turnaround time with most reports delivered within 24 hours. Emergency tests processed on priority.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tag"></i>
+                    </div>
+                    <h3 class="feature-title">Affordable Pricing</h3>
+                    <p class="feature-description">
+                        Competitive and transparent pricing with no hidden costs. Quality healthcare shouldn't break the bank.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3 class="feature-title">Certified Lab</h3>
+                    <p class="feature-description">
+                        Fully accredited laboratory meeting international standards with certified pathologists and technicians.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3 class="feature-title">Home Sample Collection</h3>
+                    <p class="feature-description">
+                        Convenient doorstep sample collection service available. Book your test and we'll come to you.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h3 class="feature-title">Expert Care</h3>
+                    <p class="feature-description">
+                        Experienced pathologists and trained technicians dedicated to providing exceptional diagnostic services.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">FAQ</span>
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>1. How much does Genomics Research & Diagnostic Centre charge?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>The charges depend on the test you need to undergo. You can call Genomics Research & Diagnostic Centre to find out about the charges.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>2. Does Genomics Research & Diagnostic Centre provide a home collection facility?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Home collection facility depends on the availability of the technician. It is better to confirm with Genomics Research & Diagnostic Centre in Vasant Vihar, Karnal if there is a home collection service available or not.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>3. Can I visit Genomics Research & Diagnostic Centre for fasting sugar test?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, you can. Consulting Genomics Research & Diagnostic Centre before visiting for a fasting sugar test can be better as they can guide you with the precautions needed for the test.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>4. Do I need to visit Genomics Research & Diagnostic Centre to collect the reports?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Most of the test reports are delivered online. However, it is best that you get in touch with them to get all the information you need.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Get In Touch</span>
+                <h2 class="section-title">Contact Us</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3>Our Location</h3>
+                        <p>97, Street No 8, Vasant Vihar<br>Karnal, Haryana 132001</p>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <h3>Call Us</h3>
+                        <p><a href="tel:+918572851031">+91 8572851031</a></p>
+                        <small>Akash Rana - Business Development Executive</small>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Email Us</h3>
+                        <p><a href="mailto:Info.genomicscentre@gmail.com">Info.genomicscentre@gmail.com</a></p>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3>Working Hours</h3>
+                        <p>Monday - Saturday: 8:00 AM - 8:00 PM<br>Sunday: 9:00 AM - 2:00 PM</p>
+                    </div>
+                </div>
+
+                <!-- Google Map -->
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13878.755648769447!2d76.97777895!3d29.6857!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390e4544e4b5a5ed%3A0x5c7c8f8f8f8f8f8f!2sVasant%20Vihar%2C%20Karnal%2C%20Haryana%20132001!5e0!3m2!1sen!2sin!4v1234567890"
+                        width="100%" 
+                        height="400" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">
+                        <img src="logo.png" alt="Genomics Centre Logo" style="height: 40px; width: auto; filter: brightness(0) invert(1);">
+                        Genomics Centre
+                    </h3>
+                    <p class="footer-description">
+                        Trusted Diagnostic & Pathology Services providing accurate, reliable, and timely medical test results.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#tests">Lab Tests</a></li>
+                        <li><a href="#why-choose">Why Choose Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Popular Tests</h4>
+                    <ul class="footer-links">
+                        <li><a href="#tests">DNA Wellness Test</a></li>
+                        <li><a href="#tests">Paternity Test</a></li>
+                        <li><a href="#tests">NIPT</a></li>
+                        <li><a href="#tests">Whole Genome Sequencing</a></li>
+                        <li><a href="#tests">Karyotyping (H & F)</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Contact Info</h4>
+                    <ul class="footer-contact">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            97, Street No 8, Vasant Vihar, Karnal, Haryana 132001
+                        </li>
+                        <li>
+                            <i class="fas fa-phone-alt"></i>
+                            <a href="tel:+918572851031">+91 8572851031</a>
+                        </li>
+                        <li>
+                            <i class="fab fa-whatsapp"></i>
+                            <a href="https://wa.me/918572851031" target="_blank">WhatsApp: +91 8572851031</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:Info.genomicscentre@gmail.com">Info.genomicscentre@gmail.com</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Genomics Research & Diagnostics Centre. All rights reserved.</p>
+                <p class="footer-credit">Designed with <i class="fas fa-heart"></i> for better healthcare</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Floating Contact Buttons -->
+    <div class="floating-contact-buttons">
+        <button class="floating-btn book-btn" onclick="openBookingModal('', '')" aria-label="Book Test">
+            <i class="fas fa-clipboard-list"></i>
+            <span class="btn-text">Book a Test</span>
+        </button>
+        <a href="https://wa.me/918572851031" target="_blank" class="floating-btn whatsapp-btn" aria-label="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+            <span class="btn-text">Message Us</span>
+        </a>
+        <a href="tel:+918572851031" class="floating-btn call-btn" aria-label="Call Us">
+            <i class="fas fa-phone-alt"></i>
+            <span class="btn-text">Talk To Us</span>
+        </a>
+    </div>
+
+    <!-- Booking Modal -->
+    <div class="modal" id="bookingModal">
+        <div class="modal-overlay" onclick="closeBookingModal()"></div>
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeBookingModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-header">
+                <h3>Book Your Test</h3>
+                <p>Fill in your details below</p>
+            </div>
+            <form class="modal-form" id="modalBookingForm">
+                <div class="form-group">
+                    <label for="modalFullName">
+                        <i class="fas fa-user"></i> Full Name *
+                    </label>
+                    <input type="text" id="modalFullName" name="fullName" required placeholder="Enter your full name">
+                </div>
+
+                <div class="form-group">
+                    <label for="modalEmail">
+                        <i class="fas fa-envelope"></i> Email Address *
+                    </label>
+                    <input type="email" id="modalEmail" name="email" required placeholder="your.email@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="modalMobile">
+                        <i class="fas fa-phone"></i> Mobile Number *
+                    </label>
+                    <input type="tel" id="modalMobile" name="mobile" required placeholder="+91 XXXXXXXXXX" pattern="[+]?[0-9]{10,13}">
+                </div>
+
+                <div class="form-group">
+                    <label for="modalTestName">
+                        <i class="fas fa-flask"></i> Selected Test *
+                    </label>
+                    <input type="text" id="modalTestName" name="testName" readonly required>
+                </div>
+
+                <div class="form-group">
+                    <label for="modalMessage">
+                        <i class="fas fa-comment-alt"></i> Message / Notes
+                    </label>
+                    <textarea id="modalMessage" name="message" rows="3" placeholder="Any specific requirements..."></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-submit">
+                    <i class="fas fa-paper-plane"></i> Send Enquiry
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

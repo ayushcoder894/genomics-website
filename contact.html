@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Genomics Centre - Get in touch for lab tests and inquiries">
+    <title>Contact Us | Genomics Centre</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <img src="logo.png" alt="Genomics Centre Logo" class="nav-logo">
+                <span>Genomics Centre</span>
+            </div>
+            <button class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="contact.html" class="nav-link active">Contact</a></li>
+                <li><a href="#contact-form" class="nav-link btn-nav-cta">Get Started</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Contact Us</h1>
+            <p>We're here to help you with all your diagnostic needs</p>
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>/</span>
+                <span>Contact</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Info Cards -->
+    <section class="contact-info-section">
+        <div class="container">
+            <div class="contact-cards">
+                <div class="contact-card">
+                    <div class="contact-card-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Visit Our Lab</h3>
+                    <p>Genomics Research & Diagnostics Centre<br>
+                    Vasant Vihar, Karnal<br>
+                    Haryana - 132001, India</p>
+                    <a href="#" class="contact-link">Get Directions <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-card-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h3>Call Us</h3>
+                    <p>Phone: +91 123 456 7890<br>
+                    Toll Free: 1800 123 4567<br>
+                    Mon-Sat: 9:00 AM - 6:00 PM</p>
+                    <a href="tel:+911234567890" class="contact-link">Call Now <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-card-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email Us</h3>
+                    <p>General: info@genomicscentre.com<br>
+                    Support: support@genomicscentre.com<br>
+                    24/7 Response Time</p>
+                    <a href="mailto:info@genomicscentre.com" class="contact-link">Send Email <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-card-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Working Hours</h3>
+                    <p>Monday - Friday: 9:00 AM - 6:00 PM<br>
+                    Saturday: 9:00 AM - 2:00 PM<br>
+                    Sunday: Closed</p>
+                    <a href="services.html" class="contact-link">View Services <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="contact-form-section" id="contact-form">
+        <div class="container">
+            <div class="contact-form-wrapper">
+                <div class="contact-form-content">
+                    <div class="section-header">
+                        <span class="section-label">Get In Touch</span>
+                        <h2 class="section-title">Send Us a Message</h2>
+                        <div class="section-divider"></div>
+                        <p class="section-description">Fill out the form below and we'll get back to you as soon as possible.</p>
+                    </div>
+
+                    <form id="contactForm" class="modern-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fullName">
+                                    <i class="fas fa-user"></i> Full Name *
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="fullName" 
+                                    name="fullName" 
+                                    required 
+                                    placeholder="Enter your full name"
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phoneNumber">
+                                    <i class="fas fa-phone"></i> Phone Number *
+                                </label>
+                                <input 
+                                    type="tel" 
+                                    id="phoneNumber" 
+                                    name="phoneNumber" 
+                                    required 
+                                    placeholder="+91 123 456 7890"
+                                >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="emailAddress">
+                                <i class="fas fa-envelope"></i> Email Address *
+                            </label>
+                            <input 
+                                type="email" 
+                                id="emailAddress" 
+                                name="emailAddress" 
+                                required 
+                                placeholder="your.email@example.com"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="serviceType">
+                                <i class="fas fa-flask"></i> Service Type *
+                            </label>
+                            <select id="serviceType" name="serviceType" required>
+                                <option value="">Select a service</option>
+                                <option value="DNA Wellness Test">DNA Wellness Test</option>
+                                <option value="Paternity Test">Paternity Test</option>
+                                <option value="Maternity Test">Maternity Test</option>
+                                <option value="STR Analysis">STR Analysis</option>
+                                <option value="Sample Viability">Sample Viability</option>
+                                <option value="Prenatal Paternity">Prenatal Paternity</option>
+                                <option value="Siblings Test">Siblings Test</option>
+                                <option value="Grandparentage Test">Grandparentage Test</option>
+                                <option value="Avuncular Test">Avuncular Test</option>
+                                <option value="YSTR Analysis">YSTR Analysis</option>
+                                <option value="mt DNA Analysis">mt DNA Analysis</option>
+                                <option value="Legal/Transplant Autosomal Analysis">Legal/Transplant Autosomal Analysis</option>
+                                <option value="Legal/Transplant YSTR Analysis">Legal/Transplant YSTR Analysis</option>
+                                <option value="Legal/Transplant mtDNA Analysis">Legal/Transplant mtDNA Analysis</option>
+                                <option value="Prenatal Paternity + NIPT">Prenatal Paternity + NIPT</option>
+                                <option value="Whole Genome Sequencing">Whole Genome Sequencing</option>
+                                <option value="Infertility NGS Panel">Infertility NGS Panel</option>
+                                <option value="Chromosomal Microarray (CMA)">Chromosomal Microarray (CMA)</option>
+                                <option value="Karyotyping (H & F)">Karyotyping (H & F)</option>
+                                <option value="POC by NGS">POC by NGS</option>
+                                <option value="Embrology by NGS">Embrology by NGS</option>
+                                <option value="Heredatory Panel">Heredatory Panel</option>
+                                <option value="Multigene Panel (72 Gene)">Multigene Panel (72 Gene)</option>
+                                <option value="Multigene Panel (350 Gene)">Multigene Panel (350 Gene)</option>
+                                <option value="Multigene Panel (1212 Gene)">Multigene Panel (1212 Gene)</option>
+                                <option value="NIPT">NIPT</option>
+                                <option value="Other">Other Services</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" id="pricingTypeGroup" style="display: none;">
+                            <label>
+                                <i class="fas fa-tag"></i> Pricing Type *
+                            </label>
+                            <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
+                                <label class="pricing-radio">
+                                    <input type="radio" name="pricingType" value="individual" checked>
+                                    <span id="individualPriceLabel">Individual</span>
+                                </label>
+                                <label class="pricing-radio">
+                                    <input type="radio" name="pricingType" value="partner">
+                                    <span id="partnerPriceLabel">Partner</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="preferredDate">
+                                <i class="fas fa-calendar"></i> Preferred Appointment Date
+                            </label>
+                            <input 
+                                type="date" 
+                                id="preferredDate" 
+                                name="preferredDate"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="messageText">
+                                <i class="fas fa-comment-alt"></i> Your Message
+                            </label>
+                            <textarea 
+                                id="messageText" 
+                                name="messageText" 
+                                rows="5" 
+                                placeholder="Tell us about your requirements, questions, or any special instructions..."
+                            ></textarea>
+                        </div>
+
+                        <div class="form-group checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="agreeTerms" required>
+                                <span>I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a> *</span>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-full btn-lg">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+
+                        <p class="form-note">
+                            <i class="fas fa-info-circle"></i> Fields marked with * are required
+                        </p>
+                    </form>
+                </div>
+
+                <div class="contact-sidebar">
+                    <div class="sidebar-card">
+                        <h3><i class="fas fa-question-circle"></i> Have Questions?</h3>
+                        <p>Check out our FAQ section for quick answers to common questions.</p>
+                        <a href="index.html#faq" class="btn btn-outline">View FAQ</a>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <h3><i class="fas fa-download"></i> Download Resources</h3>
+                        <ul class="resource-list">
+                            <li>
+                                <a href="#">
+                                    <i class="fas fa-file-pdf"></i>
+                                    <span>Test Catalog (PDF)</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fas fa-file-pdf"></i>
+                                    <span>Price List (PDF)</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fas fa-file-pdf"></i>
+                                    <span>Sample Collection Guide</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <h3><i class="fas fa-headset"></i> Emergency Support</h3>
+                        <p>For urgent inquiries, call our 24/7 helpline:</p>
+                        <a href="tel:+911234567890" class="emergency-number">
+                            <i class="fas fa-phone-volume"></i> +91 123 456 7890
+                        </a>
+                    </div>
+
+                    <div class="sidebar-card social-card">
+                        <h3><i class="fas fa-share-alt"></i> Follow Us</h3>
+                        <div class="social-links-large">
+                            <a href="#" class="social-btn facebook">
+                                <i class="fab fa-facebook-f"></i>
+                                <span>Facebook</span>
+                            </a>
+                            <a href="#" class="social-btn twitter">
+                                <i class="fab fa-twitter"></i>
+                                <span>Twitter</span>
+                            </a>
+                            <a href="#" class="social-btn instagram">
+                                <i class="fab fa-instagram"></i>
+                                <span>Instagram</span>
+                            </a>
+                            <a href="#" class="social-btn linkedin">
+                                <i class="fab fa-linkedin-in"></i>
+                                <span>LinkedIn</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Location</span>
+                <h2 class="section-title">Find Us on Map</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="map-placeholder">
+                <i class="fas fa-map-marked-alt"></i>
+                <p>Vasant Vihar, Karnal, Haryana</p>
+                <a href="https://maps.google.com" target="_blank" class="btn btn-primary">Open in Google Maps</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <div class="footer-brand">
+                        <i class="fas fa-dna"></i>
+                        <span>Genomics Centre</span>
+                    </div>
+                    <p class="footer-description">
+                        Your trusted partner in genetic testing and diagnostics. Committed to excellence, accuracy, and patient care.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="index.html#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Our Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="services.html#dna">DNA Wellness Test</a></li>
+                        <li><a href="services.html#paternity">Paternity Test</a></li>
+                        <li><a href="services.html#str">STR Analysis</a></li>
+                        <li><a href="services.html">View All Tests</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-contact">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Vasant Vihar, Karnal<br>Haryana, India</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>+91 123 456 7890</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>info@genomicscentre.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Genomics Research & Diagnostics Centre. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage"></span>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

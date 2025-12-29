@@ -9,17 +9,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Loading Overlay -->
-    <div class="loading-overlay" id="loadingOverlay">
-        <div class="spinner"></div>
-    </div>
-
-    <!-- Toast Notification -->
-    <div class="toast" id="toast">
-        <i class="fas fa-check-circle"></i>
-        <span id="toastMessage"></span>
-    </div>
-
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="container">
@@ -33,11 +22,10 @@
                 <span></span>
             </button>
             <ul class="nav-menu" id="navMenu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#about" class="nav-link">About Us</a></li>
-                <li><a href="#tests" class="nav-link">Lab Tests</a></li>
-                <li><a href="#why-choose" class="nav-link">Why Choose Us</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="#enquiry" class="nav-link btn-nav-cta">Get Started</a></li>
             </ul>
         </div>
     </nav>
@@ -47,16 +35,31 @@
         <div class="hero-overlay"></div>
         <div class="container">
             <div class="hero-content">
-                <h1 class="hero-title animate-fade-in">Genomics Research & Diagnostics Centre</h1>
-                <p class="hero-subtitle animate-fade-in-delay">Trusted Diagnostic & Pathology Services</p>
-                <p class="hero-description animate-fade-in-delay-2">Accurate Results | Modern Equipment | Expert Care</p>
-                <div class="hero-buttons animate-fade-in-delay-3">
-                    <button onclick="scrollToBooking()" class="btn btn-primary">
-                        <i class="fas fa-calendar-check"></i> Book a Test
-                    </button>
-                    <button onclick="scrollToTests()" class="btn btn-secondary">
-                        <i class="fas fa-flask"></i> View Tests
-                    </button>
+                <span class="hero-badge">🧬 Advanced Genetic Testing</span>
+                <h1 class="hero-title">Genomics Research & Diagnostics Centre</h1>
+                <p class="hero-subtitle">Trusted Diagnostic & Pathology Services in Karnal, Haryana</p>
+                <p class="hero-description">Accurate Results • Modern Equipment • Expert Care</p>
+                <div class="hero-buttons">
+                    <a href="services.html" class="btn btn-primary">
+                        <i class="fas fa-microscope"></i> Explore Services
+                    </a>
+                    <a href="#enquiry" class="btn btn-secondary">
+                        <i class="fas fa-calendar-check"></i> Book Appointment
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">10,000+</div>
+                        <div class="stat-label">Tests Conducted</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">99.9%</div>
+                        <div class="stat-label">Accuracy Rate</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Support Available</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -74,266 +77,113 @@
                 <span class="section-label">About Us</span>
                 <h2 class="section-title">Welcome to Genomics Research & Diagnostics Centre</h2>
                 <div class="section-divider"></div>
+                <p class="section-description">Your trusted partner in health and wellness diagnostics</p>
             </div>
             <div class="about-content">
                 <div class="about-text">
-                    <p class="about-main">
-                        At Genomics Research & Diagnostics Centre, we are committed to providing accurate, reliable, and timely diagnostic services to our patients. Located in the heart of Karnal, Haryana, our state-of-the-art laboratory combines cutting-edge technology with expert medical professionals to deliver superior healthcare solutions.
-                    </p>
-                    <p class="about-description">
-                        With years of experience in medical diagnostics and pathology, we understand the critical role that accurate test results play in diagnosis and treatment. Our laboratory is equipped with the latest diagnostic instruments and follows stringent quality control measures to ensure precision in every test we conduct.
-                    </p>
-                    <div class="about-stats">
-                        <div class="stat-item">
-                            <div class="stat-icon"><i class="fas fa-microscope"></i></div>
-                            <h3 class="stat-number" data-target="5000">0</h3>
-                            <p class="stat-label">Tests Conducted Monthly</p>
+                    <div class="about-card">
+                        <div class="about-icon">
+                            <i class="fas fa-hospital"></i>
                         </div>
-                        <div class="stat-item">
-                            <div class="stat-icon"><i class="fas fa-user-md"></i></div>
-                            <h3 class="stat-number" data-target="15">0</h3>
-                            <p class="stat-label">Expert Pathologists</p>
+                        <h3>Who We Are</h3>
+                        <p>
+                            Genomics Research & Diagnostic Centre in Vasant Vihar, Karnal is dedicated to delivering reliable and high-quality diagnostic and lab testing services. With a team of experienced professionals, a wide range of diagnostic options, and a reputation for precision, we ensure that every patient receives the care, accuracy, and efficiency they deserve.
+                        </p>
+                    </div>
+                    <div class="about-card">
+                        <div class="about-icon">
+                            <i class="fas fa-award"></i>
                         </div>
-                        <div class="stat-item">
-                            <div class="stat-icon"><i class="fas fa-award"></i></div>
-                            <h3 class="stat-number" data-target="10">0</h3>
-                            <p class="stat-label">Years of Excellence</p>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-icon"><i class="fas fa-certificate"></i></div>
-                            <h3 class="stat-number" data-target="100">0</h3>
-                            <p class="stat-label">% Accuracy Rate</p>
-                        </div>
+                        <h3>Our Commitment</h3>
+                        <p>
+                            For healthcare and diagnostic solutions in Karnal, Genomics Research & Diagnostic Centre remains a trusted provider, committed to excellence in every aspect of patient and client care. We use cutting-edge technology and maintain the highest standards in laboratory practices.
+                        </p>
                     </div>
                 </div>
                 <div class="about-image">
                     <div class="image-placeholder">
-                        <i class="fas fa-hospital"></i>
+                        <i class="fas fa-dna"></i>
+                        <div class="image-overlay">
+                            <h4>State-of-the-Art Facility</h4>
+                            <p>Modern equipment for accurate results</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Lab Tests Section -->
-    <section class="tests" id="tests">
+    <!-- Enquiry Section -->
+    <section class="enquiry" id="enquiry">
         <div class="container">
             <div class="section-header">
-                <span class="section-label">Our Services</span>
-                <h2 class="section-title">Available Lab Tests</h2>
+                <span class="section-label">Get In Touch</span>
+                <h2 class="section-title">Send Us an Enquiry</h2>
                 <div class="section-divider"></div>
+                <p class="section-description">Have questions? We're here to help!</p>
             </div>
-
-            <!-- Filter and Sort Controls -->
-            <div class="tests-controls">
-                <div class="search-box">
-                    <i class="fas fa-search"></i>
-                    <input type="text" id="searchTests" placeholder="Search for tests..." />
+            <div class="enquiry-content">
+                <div class="enquiry-info">
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <h3>Call Us</h3>
+                        <p>+91 123 456 7890</p>
+                        <p class="info-subtext">Mon-Sat, 9AM-6PM</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Email Us</h3>
+                        <p>info@genomicscentre.com</p>
+                        <p class="info-subtext">24/7 Support</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3>Visit Us</h3>
+                        <p>Vasant Vihar, Karnal</p>
+                        <p class="info-subtext">Haryana, India</p>
+                    </div>
                 </div>
-                <div class="sort-box">
-                    <label for="sortTests">
-                        <i class="fas fa-sort-amount-down"></i> Sort by:
-                    </label>
-                    <select id="sortTests">
-                        <option value="default">Default</option>
-                        <option value="price-low">Price: Low to High</option>
-                        <option value="price-high">Price: High to Low</option>
-                        <option value="name">Name: A to Z</option>
-                    </select>
+                <div class="enquiry-form">
+                    <form id="enquiryForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name"><i class="fas fa-user"></i> Full Name</label>
+                                <input type="text" id="name" name="name" required placeholder="Enter your name">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone"><i class="fas fa-phone"></i> Phone Number</label>
+                                <input type="tel" id="phone" name="phone" required placeholder="Enter your phone">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email"><i class="fas fa-envelope"></i> Email Address</label>
+                            <input type="email" id="email" name="email" required placeholder="Enter your email">
+                        </div>
+                        <div class="form-group">
+                            <label for="service"><i class="fas fa-flask"></i> Service Interested In</label>
+                            <select id="service" name="service" required>
+                                <option value="">Select a service</option>
+                                <option value="DNA Wellness Test">DNA Wellness Test</option>
+                                <option value="Paternity Test">Paternity Test</option>
+                                <option value="STR Analysis">STR Analysis</option>
+                                <option value="Other">Other Services</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message"><i class="fas fa-comment"></i> Your Message</label>
+                            <textarea id="message" name="message" rows="4" placeholder="Tell us how we can help..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <i class="fas fa-paper-plane"></i> Send Enquiry
+                        </button>
+                    </form>
                 </div>
-            </div>
-
-            <!-- Tests Grid -->
-            <div class="tests-grid" id="testsGrid">
-                <!-- CBC Test -->
-                <div class="test-card" data-name="CBC Test" data-price="300">
-                    <div class="test-icon">
-                        <i class="fas fa-vial"></i>
-                    </div>
-                    <h3 class="test-name">CBC Test</h3>
-                    <p class="test-description">Complete Blood Count - Measures different components of blood including RBC, WBC, and platelets.</p>
-                    <div class="test-price">₹300</div>
-                    <button class="btn btn-book" onclick="openBookingModal('CBC Test', '300')">
-                        <i class="fas fa-calendar-check"></i> Book Now
-                    </button>
-                </div>
-
-                <!-- Thyroid Profile -->
-                <div class="test-card" data-name="Thyroid Profile" data-price="500">
-                    <div class="test-icon">
-                        <i class="fas fa-notes-medical"></i>
-                    </div>
-                    <h3 class="test-name">Thyroid Profile</h3>
-                    <p class="test-description">Complete thyroid function assessment including T3, T4, and TSH levels for metabolic health.</p>
-                    <div class="test-price">₹500</div>
-                    <button class="btn btn-book" onclick="openBookingModal('Thyroid Profile', '500')">
-                        <i class="fas fa-calendar-check"></i> Book Now
-                    </button>
-                </div>
-
-                <!-- Lipid Profile -->
-                <div class="test-card" data-name="Lipid Profile" data-price="600">
-                    <div class="test-icon">
-                        <i class="fas fa-heartbeat"></i>
-                    </div>
-                    <h3 class="test-name">Lipid Profile</h3>
-                    <p class="test-description">Comprehensive cholesterol test measuring LDL, HDL, and triglycerides for heart health.</p>
-                    <div class="test-price">₹600</div>
-                    <button class="btn btn-book" onclick="openBookingModal('Lipid Profile', '600')">
-                        <i class="fas fa-calendar-check"></i> Book Now
-                    </button>
-                </div>
-
-                <!-- Liver Function Test -->
-                <div class="test-card" data-name="Liver Function Test" data-price="700">
-                    <div class="test-icon">
-                        <i class="fas fa-procedures"></i>
-                    </div>
-                    <h3 class="test-name">Liver Function Test</h3>
-                    <p class="test-description">Evaluates liver health through enzymes, proteins, and bilirubin levels assessment.</p>
-                    <div class="test-price">₹700</div>
-                    <button class="btn btn-book" onclick="openBookingModal('Liver Function Test', '700')">
-                        <i class="fas fa-calendar-check"></i> Book Now
-                    </button>
-                </div>
-
-                <!-- Kidney Function Test -->
-                <div class="test-card" data-name="Kidney Function Test" data-price="650">
-                    <div class="test-icon">
-                        <i class="fas fa-lungs"></i>
-                    </div>
-                    <h3 class="test-name">Kidney Function Test</h3>
-                    <p class="test-description">Assesses kidney health through creatinine, BUN, and electrolyte measurements.</p>
-                    <div class="test-price">₹650</div>
-                    <button class="btn btn-book" onclick="openBookingModal('Kidney Function Test', '650')">
-                        <i class="fas fa-calendar-check"></i> Book Now
-                    </button>
-                </div>
-
-                <!-- Blood Sugar (Fasting) -->
-                <div class="test-card" data-name="Blood Sugar (Fasting)" data-price="120">
-                    <div class="test-icon">
-                        <i class="fas fa-tint"></i>
-                    </div>
-                    <h3 class="test-name">Blood Sugar (Fasting)</h3>
-                    <p class="test-description">Measures fasting glucose levels to screen for diabetes and monitor blood sugar control.</p>
-                    <div class="test-price">₹120</div>
-                    <button class="btn btn-book" onclick="openBookingModal('Blood Sugar (Fasting)', '120')">
-                        <i class="fas fa-calendar-check"></i> Book Now
-                    </button>
-                </div>
-
-                <!-- Vitamin D Test -->
-                <div class="test-card" data-name="Vitamin D Test" data-price="900">
-                    <div class="test-icon">
-                        <i class="fas fa-sun"></i>
-                    </div>
-                    <h3 class="test-name">Vitamin D Test</h3>
-                    <p class="test-description">Measures vitamin D levels essential for bone health, immunity, and overall wellness.</p>
-                    <div class="test-price">₹900</div>
-                    <button class="btn btn-book" onclick="openBookingModal('Vitamin D Test', '900')">
-                        <i class="fas fa-calendar-check"></i> Book Now
-                    </button>
-                </div>
-
-                <!-- HbA1c Test -->
-                <div class="test-card" data-name="HbA1c Test" data-price="450">
-                    <div class="test-icon">
-                        <i class="fas fa-syringe"></i>
-                    </div>
-                    <h3 class="test-name">HbA1c Test</h3>
-                    <p class="test-description">Measures average blood sugar levels over 2-3 months for diabetes management.</p>
-                    <div class="test-price">₹450</div>
-                    <button class="btn btn-book" onclick="openBookingModal('HbA1c Test', '450')">
-                        <i class="fas fa-calendar-check"></i> Book Now
-                    </button>
-                </div>
-
-                <!-- Complete Urine Analysis -->
-                <div class="test-card" data-name="Complete Urine Analysis" data-price="200">
-                    <div class="test-icon">
-                        <i class="fas fa-prescription-bottle"></i>
-                    </div>
-                    <h3 class="test-name">Complete Urine Analysis</h3>
-                    <p class="test-description">Comprehensive urinalysis for detecting infections, kidney issues, and metabolic conditions.</p>
-                    <div class="test-price">₹200</div>
-                    <button class="btn btn-book" onclick="openBookingModal('Complete Urine Analysis', '200')">
-                        <i class="fas fa-calendar-check"></i> Book Now
-                    </button>
-                </div>
-            </div>
-
-            <div class="no-results" id="noResults" style="display: none;">
-                <i class="fas fa-search"></i>
-                <p>No tests found matching your search.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Booking Form Section -->
-    <section class="booking-section" id="booking-form">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">Book Your Test</span>
-                <h2 class="section-title">Send Us Your Enquiry</h2>
-                <div class="section-divider"></div>
-            </div>
-            <div class="booking-form-wrapper">
-                <form class="booking-form" id="bookingForm">
-                    <div class="form-group">
-                        <label for="fullName">
-                            <i class="fas fa-user"></i> Full Name *
-                        </label>
-                        <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
-                        <span class="error-message"></span>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">
-                            <i class="fas fa-envelope"></i> Email Address *
-                        </label>
-                        <input type="email" id="email" name="email" required placeholder="your.email@example.com">
-                        <span class="error-message"></span>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="mobile">
-                            <i class="fas fa-phone"></i> Mobile Number *
-                        </label>
-                        <input type="tel" id="mobile" name="mobile" required placeholder="+91 XXXXXXXXXX" pattern="[+]?[0-9]{10,13}">
-                        <span class="error-message"></span>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="testName">
-                            <i class="fas fa-flask"></i> Selected Test *
-                        </label>
-                        <select id="testName" name="testName" required>
-                            <option value="">-- Select a Test --</option>
-                            <option value="CBC Test">CBC Test - ₹300</option>
-                            <option value="Thyroid Profile">Thyroid Profile - ₹500</option>
-                            <option value="Lipid Profile">Lipid Profile - ₹600</option>
-                            <option value="Liver Function Test">Liver Function Test - ₹700</option>
-                            <option value="Kidney Function Test">Kidney Function Test - ₹650</option>
-                            <option value="Blood Sugar (Fasting)">Blood Sugar (Fasting) - ₹120</option>
-                            <option value="Vitamin D Test">Vitamin D Test - ₹900</option>
-                            <option value="HbA1c Test">HbA1c Test - ₹450</option>
-                            <option value="Complete Urine Analysis">Complete Urine Analysis - ₹200</option>
-                        </select>
-                        <span class="error-message"></span>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="message">
-                            <i class="fas fa-comment-alt"></i> Message / Notes
-                        </label>
-                        <textarea id="message" name="message" rows="4" placeholder="Any specific requirements or questions..."></textarea>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary btn-submit">
-                        <i class="fas fa-paper-plane"></i> Send Enquiry
-                    </button>
-                </form>
             </div>
         </div>
     </section>
@@ -343,128 +193,118 @@
         <div class="container">
             <div class="section-header">
                 <span class="section-label">Why Choose Us</span>
-                <h2 class="section-title">Your Trusted Healthcare Partner</h2>
+                <h2 class="section-title">What Makes Us Different</h2>
                 <div class="section-divider"></div>
             </div>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-bullseye"></i>
+                        <i class="fas fa-certificate"></i>
                     </div>
-                    <h3 class="feature-title">100% Accuracy</h3>
-                    <p class="feature-description">
-                        State-of-the-art equipment and stringent quality control measures ensure precise and reliable results every time.
-                    </p>
+                    <h3>NABL Certified</h3>
+                    <p>Our lab is NABL certified, ensuring the highest quality standards in testing and diagnostics.</p>
                 </div>
-
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <h3>Expert Team</h3>
+                    <p>Highly qualified pathologists and technicians with years of experience in genetic testing.</p>
+                </div>
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-clock"></i>
                     </div>
-                    <h3 class="feature-title">Fast Reports</h3>
-                    <p class="feature-description">
-                        Quick turnaround time with most reports delivered within 24 hours. Emergency tests processed on priority.
-                    </p>
+                    <h3>Quick Results</h3>
+                    <p>Fast turnaround time for test results without compromising on accuracy.</p>
                 </div>
-
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-tag"></i>
+                        <i class="fas fa-shield-alt"></i>
                     </div>
-                    <h3 class="feature-title">Affordable Pricing</h3>
-                    <p class="feature-description">
-                        Competitive and transparent pricing with no hidden costs. Quality healthcare shouldn't break the bank.
-                    </p>
+                    <h3>100% Confidential</h3>
+                    <p>Your privacy is our priority. All test results are kept strictly confidential.</p>
                 </div>
-
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-certificate"></i>
+                        <i class="fas fa-microscope"></i>
                     </div>
-                    <h3 class="feature-title">Certified Lab</h3>
-                    <p class="feature-description">
-                        Fully accredited laboratory meeting international standards with certified pathologists and technicians.
-                    </p>
+                    <h3>Advanced Technology</h3>
+                    <p>State-of-the-art equipment and cutting-edge testing methodologies.</p>
                 </div>
-
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-home"></i>
+                        <i class="fas fa-hand-holding-heart"></i>
                     </div>
-                    <h3 class="feature-title">Home Sample Collection</h3>
-                    <p class="feature-description">
-                        Convenient doorstep sample collection service available. Book your test and we'll come to you.
-                    </p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-user-shield"></i>
-                    </div>
-                    <h3 class="feature-title">Expert Care</h3>
-                    <p class="feature-description">
-                        Experienced pathologists and trained technicians dedicated to providing exceptional diagnostic services.
-                    </p>
+                    <h3>Affordable Pricing</h3>
+                    <p>Competitive pricing with flexible payment options and partner discounts.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
         <div class="container">
             <div class="section-header">
-                <span class="section-label">Get In Touch</span>
-                <h2 class="section-title">Contact Us</h2>
+                <span class="section-label">FAQ</span>
+                <h2 class="section-title">Frequently Asked Questions</h2>
                 <div class="section-divider"></div>
             </div>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <h3>Our Location</h3>
-                        <p>97, Street No 8, Vasant Vihar<br>Karnal, Haryana 132001</p>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What types of tests do you offer?</h3>
+                        <i class="fas fa-chevron-down"></i>
                     </div>
-
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone-alt"></i>
-                        </div>
-                        <h3>Call Us</h3>
-                        <p><a href="tel:+918572851031">+91 8572851031</a></p>
-                        <small>Akash Rana - Business Development Executive</small>
-                    </div>
-
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <h3>Email Us</h3>
-                        <p><a href="mailto:Info.genomicscentre@gmail.com">Info.genomicscentre@gmail.com</a></p>
-                    </div>
-
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <h3>Working Hours</h3>
-                        <p>Monday - Saturday: 8:00 AM - 8:00 PM<br>Sunday: 9:00 AM - 2:00 PM</p>
+                    <div class="faq-answer">
+                        <p>We offer a comprehensive range of genetic and diagnostic tests including DNA Wellness Testing, Paternity Testing, STR Analysis, Prenatal Testing, and various other specialized genomic tests. Visit our services page for a complete list.</p>
                     </div>
                 </div>
-
-                <!-- Google Map -->
-                <div class="map-container">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13878.755648769447!2d76.97777895!3d29.6857!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390e4544e4b5a5ed%3A0x5c7c8f8f8f8f8f8f!2sVasant%20Vihar%2C%20Karnal%2C%20Haryana%20132001!5e0!3m2!1sen!2sin!4v1234567890"
-                        width="100%" 
-                        height="400" 
-                        style="border:0;" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How long does it take to get test results?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Turnaround time varies by test type. Most routine tests take 3-5 business days, while specialized genetic tests may take 7-14 days. We'll provide an estimated timeframe when you book your test.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Are your tests accurate and reliable?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we maintain a 99.9% accuracy rate. Our lab is NABL certified and follows strict quality control protocols. All tests are performed by experienced professionals using state-of-the-art equipment.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Do you offer home sample collection?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we provide home sample collection services for your convenience. Additional charges may apply based on your location. Contact us to schedule a home visit.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What are the payment options available?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We accept cash, credit/debit cards, UPI, and online bank transfers. We also offer partner pricing for multiple tests and installment options for expensive tests.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Is my information kept confidential?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely. We follow strict privacy protocols and all patient information is kept 100% confidential. Your test results are only shared with you through secure channels.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -474,130 +314,78 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
-                    <h3 class="footer-title">
-                        <img src="logo.png" alt="Genomics Centre Logo" style="height: 40px; width: auto; filter: brightness(0) invert(1);">
-                        Genomics Centre
-                    </h3>
+                <div class="footer-col">
+                    <div class="footer-brand">
+                        <i class="fas fa-dna"></i>
+                        <span>Genomics Centre</span>
+                    </div>
                     <p class="footer-description">
-                        Trusted Diagnostic & Pathology Services providing accurate, reliable, and timely medical test results.
+                        Your trusted partner in genetic testing and diagnostics. Committed to excellence, accuracy, and patient care.
                     </p>
-                    <div class="social-links">
-                        <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <div class="footer-social">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
-
-                <div class="footer-section">
-                    <h4 class="footer-subtitle">Quick Links</h4>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
                     <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#tests">Lab Tests</a></li>
-                        <li><a href="#why-choose">Why Choose Us</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#faq">FAQ</a></li>
                     </ul>
                 </div>
-
-                <div class="footer-section">
-                    <h4 class="footer-subtitle">Popular Tests</h4>
+                <div class="footer-col">
+                    <h3>Our Services</h3>
                     <ul class="footer-links">
-                        <li><a href="#tests">CBC Test</a></li>
-                        <li><a href="#tests">Thyroid Profile</a></li>
-                        <li><a href="#tests">Lipid Profile</a></li>
-                        <li><a href="#tests">Liver Function Test</a></li>
-                        <li><a href="#tests">Vitamin D Test</a></li>
+                        <li><a href="services.html#dna">DNA Wellness Test</a></li>
+                        <li><a href="services.html#paternity">Paternity Test</a></li>
+                        <li><a href="services.html#str">STR Analysis</a></li>
+                        <li><a href="services.html">View All Tests</a></li>
                     </ul>
                 </div>
-
-                <div class="footer-section">
-                    <h4 class="footer-subtitle">Contact Info</h4>
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
                     <ul class="footer-contact">
                         <li>
                             <i class="fas fa-map-marker-alt"></i>
-                            97, Street No 8, Vasant Vihar, Karnal, Haryana 132001
+                            <span>Vasant Vihar, Karnal<br>Haryana, India</span>
                         </li>
                         <li>
-                            <i class="fas fa-phone-alt"></i>
-                            <a href="tel:+918572851031">+91 8572851031</a>
+                            <i class="fas fa-phone"></i>
+                            <span>+91 123 456 7890</span>
                         </li>
                         <li>
                             <i class="fas fa-envelope"></i>
-                            <a href="mailto:Info.genomicscentre@gmail.com">Info.genomicscentre@gmail.com</a>
+                            <span>info@genomicscentre.com</span>
                         </li>
                     </ul>
                 </div>
             </div>
-
             <div class="footer-bottom">
                 <p>&copy; 2025 Genomics Research & Diagnostics Centre. All rights reserved.</p>
-                <p class="footer-credit">Designed with <i class="fas fa-heart"></i> for better healthcare</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
             </div>
         </div>
     </footer>
 
     <!-- Scroll to Top Button -->
-    <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+    <button class="scroll-top" id="scrollTop">
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <!-- Booking Modal -->
-    <div class="modal" id="bookingModal">
-        <div class="modal-overlay" onclick="closeBookingModal()"></div>
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeBookingModal()">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="modal-header">
-                <h3>Book Your Test</h3>
-                <p>Fill in your details below</p>
-            </div>
-            <form class="modal-form" id="modalBookingForm">
-                <div class="form-group">
-                    <label for="modalFullName">
-                        <i class="fas fa-user"></i> Full Name *
-                    </label>
-                    <input type="text" id="modalFullName" name="fullName" required placeholder="Enter your full name">
-                </div>
-
-                <div class="form-group">
-                    <label for="modalEmail">
-                        <i class="fas fa-envelope"></i> Email Address *
-                    </label>
-                    <input type="email" id="modalEmail" name="email" required placeholder="your.email@example.com">
-                </div>
-
-                <div class="form-group">
-                    <label for="modalMobile">
-                        <i class="fas fa-phone"></i> Mobile Number *
-                    </label>
-                    <input type="tel" id="modalMobile" name="mobile" required placeholder="+91 XXXXXXXXXX" pattern="[+]?[0-9]{10,13}">
-                </div>
-
-                <div class="form-group">
-                    <label for="modalTestName">
-                        <i class="fas fa-flask"></i> Selected Test *
-                    </label>
-                    <input type="text" id="modalTestName" name="testName" readonly required>
-                </div>
-
-                <div class="form-group">
-                    <label for="modalMessage">
-                        <i class="fas fa-comment-alt"></i> Message / Notes
-                    </label>
-                    <textarea id="modalMessage" name="message" rows="3" placeholder="Any specific requirements..."></textarea>
-                </div>
-
-                <button type="submit" class="btn btn-primary btn-submit">
-                    <i class="fas fa-paper-plane"></i> Send Enquiry
-                </button>
-            </form>
-        </div>
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage"></span>
     </div>
 
-    <!-- EmailJS SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script src="script.js"></script>
 </body>

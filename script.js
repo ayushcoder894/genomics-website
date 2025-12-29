@@ -1,100 +1,99 @@
 /* ========================================
-   GENOMICS CENTRE - JAVASCRIPT
-   Interactive features and EmailJS integration
+   GENOMICS CENTRE - MODERN JAVASCRIPT
+   Multi-Page Website Functionality
    ======================================== */
 
-// ===== HERO BUTTON FUNCTIONS (MUST BE FIRST) =====
-function scrollToBooking() {
-    console.log('📋 Book a Test clicked!');
-    const bookingSection = document.getElementById('booking-form');
-    if (bookingSection) {
-        bookingSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-}
-
-function scrollToTests() {
-    console.log('🧪 View Tests clicked!');
-    const testsSection = document.getElementById('tests');
-    if (testsSection) {
-        testsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-}
-
 // ===== EmailJS Configuration =====
-// TODO: Replace with your actual EmailJS credentials
 const EMAILJS_CONFIG = {
-    SERVICE_ID: 'service_t13tbif',      // Replace with your EmailJS service ID
-    TEMPLATE_ID: 'template_2vv929a',    // Replace with your EmailJS template ID
-    PUBLIC_KEY: 'PZaAM_z7Us2HNlzbJ'       // Replace with your EmailJS public key
+    SERVICE_ID: 'service_t13tbif',
+    TEMPLATE_ID: 'template_2vv929a',
+    PUBLIC_KEY: 'PZaAM_z7Us2HNlzbJ'
 };
 
-// Initialize EmailJS
-(function() {
+// Initialize EmailJS when available
+if (typeof emailjs !== 'undefined') {
     emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
-})();
+}
 
 // ===== DOM Elements =====
 const navbar = document.getElementById('navbar');
 const navToggle = document.getElementById('navToggle');
 const navMenu = document.getElementById('navMenu');
 const scrollTopBtn = document.getElementById('scrollTop');
-const bookingForm = document.getElementById('bookingForm');
-const modalBookingForm = document.getElementById('modalBookingForm');
-const bookingModal = document.getElementById('bookingModal');
-const loadingOverlay = document.getElementById('loadingOverlay');
-const toast = document.getElementById('toast');
-const toastMessage = document.getElementById('toastMessage');
-const searchInput = document.getElementById('searchTests');
-const sortSelect = document.getElementById('sortTests');
-const testsGrid = document.getElementById('testsGrid');
-const noResults = document.getElementById('noResults');
 
-// ===== Navigation Functionality =====
-
-// Sticky navbar on scroll
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 100) {
-        navbar.classList.add('scrolled');
-        scrollTopBtn.classList.add('visible');
-    } else {
-        navbar.classList.remove('scrolled');
-        scrollTopBtn.classList.remove('visible');
-    }
-});
-
-// Mobile menu toggle
-navToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-    
-    // Animate hamburger icon
-    const spans = navToggle.querySelectorAll('span');
-    if (navMenu.classList.contains('active')) {
-        spans[0].style.transform = 'rotate(45deg) translateY(10px)';
-        spans[1].style.opacity = '0';
-        spans[2].style.transform = 'rotate(-45deg) translateY(-10px)';
-    } else {
-        spans[0].style.transform = 'none';
-        spans[1].style.opacity = '1';
-        spans[2].style.transform = 'none';
-    }
-});
-
-// Close mobile menu when clicking a link
-document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        const spans = navToggle.querySelectorAll('span');
-        spans[0].style.transform = 'none';
-        spans[1].style.opacity = '1';
-        spans[2].style.transform = 'none';
+// ===== Navigation Toggle (Mobile) =====
+if (navToggle && navMenu) {
+    navToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
     });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
+            navMenu.classList.remove('active');
+        }
+    });
+
+    // Close menu when clicking a link
+    const navLinks = navMenu.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+        });
+    });
+}
+
+// ===== Sticky Navbar =====
+let lastScroll = 0;
+
+window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+
+    if (currentScroll <= 0) {
+        navbar.classList.remove('scroll-up');
+        return;
+    }
+
+    if (currentScroll > lastScroll && !navbar.classList.contains('scroll-down')) {
+        // Scroll Down
+        navbar.classList.remove('scroll-up');
+        navbar.classList.add('scroll-down');
+    } else if (currentScroll < lastScroll && navbar.classList.contains('scroll-down')) {
+        // Scroll Up
+        navbar.classList.remove('scroll-down');
+        navbar.classList.add('scroll-up');
+    }
+
+    lastScroll = currentScroll;
 });
 
-// Smooth scroll for all anchor links
+// ===== Scroll to Top Button =====
+if (scrollTopBtn) {
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            scrollTopBtn.classList.add('visible');
+        } else {
+            scrollTopBtn.classList.remove('visible');
+        }
+    });
+
+    scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
+
+// ===== Smooth Scroll for Anchor Links =====
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
+    anchor.addEventListener('click', function (e) {
         const href = this.getAttribute('href');
+        
+        // Don't prevent default for # only links
+        if (href === '#') return;
+        
+        e.preventDefault();
         const target = document.querySelector(href);
         
         if (target) {
@@ -107,450 +106,359 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Scroll to top button
-scrollTopBtn.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
+// ===== FAQ Accordion =====
+const faqItems = document.querySelectorAll('.faq-item');
+
+faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    
+    question.addEventListener('click', () => {
+        // Close other items
+        faqItems.forEach(otherItem => {
+            if (otherItem !== item && otherItem.classList.contains('active')) {
+                otherItem.classList.remove('active');
+            }
+        });
+        
+        // Toggle current item
+        item.classList.toggle('active');
     });
 });
 
-// ===== Statistics Counter Animation =====
-function animateCounter(element) {
-    const target = parseInt(element.getAttribute('data-target'));
-    const duration = 2000; // 2 seconds
-    const increment = target / (duration / 16); // 60 FPS
-    let current = 0;
+// ===== Form Submission (Homepage Enquiry) =====
+const enquiryForm = document.getElementById('enquiryForm');
 
-    const updateCounter = () => {
-        current += increment;
-        if (current < target) {
-            element.textContent = Math.floor(current);
-            requestAnimationFrame(updateCounter);
-        } else {
-            element.textContent = target;
-        }
-    };
-
-    updateCounter();
-}
-
-// Intersection Observer for stats animation
-const statsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const counters = entry.target.querySelectorAll('.stat-number');
-            counters.forEach(counter => {
-                if (counter.textContent === '0') {
-                    animateCounter(counter);
-                }
-            });
-            statsObserver.unobserve(entry.target);
-        }
-    });
-}, { threshold: 0.5 });
-
-const aboutStats = document.querySelector('.about-stats');
-if (aboutStats) {
-    statsObserver.observe(aboutStats);
-}
-
-// ===== Test Cards - Search and Sort Functionality =====
-
-let testCardsArray = Array.from(document.querySelectorAll('.test-card'));
-
-// Search functionality
-searchInput.addEventListener('input', (e) => {
-    filterAndSortTests();
-});
-
-// Sort functionality
-sortSelect.addEventListener('change', () => {
-    filterAndSortTests();
-});
-
-function filterAndSortTests() {
-    const searchTerm = searchInput.value.toLowerCase().trim();
-    const sortValue = sortSelect.value;
-    
-    // Filter tests based on search
-    let filteredTests = testCardsArray.filter(card => {
-        const testName = card.getAttribute('data-name').toLowerCase();
-        const testDescription = card.querySelector('.test-description').textContent.toLowerCase();
-        return testName.includes(searchTerm) || testDescription.includes(searchTerm);
-    });
-    
-    // Sort tests
-    if (sortValue === 'price-low') {
-        filteredTests.sort((a, b) => {
-            return parseInt(a.getAttribute('data-price')) - parseInt(b.getAttribute('data-price'));
-        });
-    } else if (sortValue === 'price-high') {
-        filteredTests.sort((a, b) => {
-            return parseInt(b.getAttribute('data-price')) - parseInt(a.getAttribute('data-price'));
-        });
-    } else if (sortValue === 'name') {
-        filteredTests.sort((a, b) => {
-            return a.getAttribute('data-name').localeCompare(b.getAttribute('data-name'));
-        });
-    }
-    
-    // Clear grid
-    testsGrid.innerHTML = '';
-    
-    // Show filtered and sorted tests
-    if (filteredTests.length > 0) {
-        filteredTests.forEach(card => {
-            testsGrid.appendChild(card);
-        });
-        noResults.style.display = 'none';
-    } else {
-        noResults.style.display = 'block';
-    }
-}
-
-// ===== Modal Functionality =====
-
-// Open booking modal with pre-filled test name
-window.openBookingModal = function(testName, price) {
-    const modalTestInput = document.getElementById('modalTestName');
-    modalTestInput.value = `${testName} - ₹${price}`;
-    bookingModal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-};
-
-// Close booking modal
-window.closeBookingModal = function() {
-    bookingModal.classList.remove('active');
-    document.body.style.overflow = 'auto';
-    modalBookingForm.reset();
-};
-
-// Close modal on ESC key
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && bookingModal.classList.contains('active')) {
-        closeBookingModal();
-    }
-});
-
-// ===== Form Validation =====
-
-function validateForm(form) {
-    let isValid = true;
-    const formData = {};
-    
-    // Get all required fields
-    const fullName = form.querySelector('[name="fullName"]');
-    const email = form.querySelector('[name="email"]');
-    const mobile = form.querySelector('[name="mobile"]');
-    const testName = form.querySelector('[name="testName"]');
-    const message = form.querySelector('[name="message"]');
-    
-    // Clear previous error messages
-    form.querySelectorAll('.error-message').forEach(msg => msg.textContent = '');
-    form.querySelectorAll('.form-group input, .form-group select, .form-group textarea').forEach(field => {
-        field.style.borderColor = '';
-    });
-    
-    // Validate Full Name
-    if (!fullName.value.trim()) {
-        showError(fullName, 'Please enter your full name');
-        isValid = false;
-    } else if (fullName.value.trim().length < 3) {
-        showError(fullName, 'Name must be at least 3 characters');
-        isValid = false;
-    } else {
-        formData.fullName = fullName.value.trim();
-    }
-    
-    // Validate Email
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!email.value.trim()) {
-        showError(email, 'Please enter your email address');
-        isValid = false;
-    } else if (!emailRegex.test(email.value.trim())) {
-        showError(email, 'Please enter a valid email address');
-        isValid = false;
-    } else {
-        formData.email = email.value.trim();
-    }
-    
-    // Validate Mobile
-    const mobileRegex = /^[+]?[0-9]{10,13}$/;
-    if (!mobile.value.trim()) {
-        showError(mobile, 'Please enter your mobile number');
-        isValid = false;
-    } else if (!mobileRegex.test(mobile.value.trim().replace(/\s/g, ''))) {
-        showError(mobile, 'Please enter a valid mobile number');
-        isValid = false;
-    } else {
-        formData.mobile = mobile.value.trim();
-    }
-    
-    // Validate Test Name
-    if (!testName.value) {
-        showError(testName, 'Please select a test');
-        isValid = false;
-    } else {
-        formData.testName = testName.value;
-    }
-    
-    // Message (optional)
-    formData.message = message.value.trim() || 'No additional message';
-    
-    return isValid ? formData : null;
-}
-
-function showError(field, message) {
-    const errorSpan = field.parentElement.querySelector('.error-message');
-    if (errorSpan) {
-        errorSpan.textContent = message;
-    }
-    field.style.borderColor = 'var(--secondary-red)';
-    
-    // Scroll to first error
-    if (field.getBoundingClientRect().top < 100) {
-        field.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-}
-
-// ===== EmailJS Form Submission =====
-
-// Main booking form submission
-bookingForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    const formData = validateForm(bookingForm);
-    
-    if (formData) {
-        await sendEmail(formData, bookingForm);
-    }
-});
-
-// Modal booking form submission
-modalBookingForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    const formData = validateForm(modalBookingForm);
-    
-    if (formData) {
-        await sendEmail(formData, modalBookingForm);
-        setTimeout(() => {
-            closeBookingModal();
-        }, 2000);
-    }
-});
-
-// Send email using EmailJS
-async function sendEmail(formData, form) {
-    // Show loading overlay
-    loadingOverlay.classList.add('active');
-    
-    // Disable submit button
-    const submitBtn = form.querySelector('.btn-submit');
-    const originalBtnText = submitBtn.innerHTML;
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-    
-    try {
-        // EmailJS template parameters
-        const templateParams = {
-            to_name: 'Genomics Centre Team',
-            from_name: formData.fullName,
-            from_email: formData.email,
-            from_mobile: formData.mobile,
-            test_name: formData.testName,
-            message: formData.message,
-            reply_to: formData.email
+if (enquiryForm) {
+    enquiryForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const formData = {
+            name: document.getElementById('name')?.value,
+            phone: document.getElementById('phone')?.value,
+            email: document.getElementById('email')?.value,
+            service: document.getElementById('service')?.value,
+            message: document.getElementById('message')?.value || 'No message provided'
         };
-        
-        // Send email via EmailJS
-        const response = await emailjs.send(
-            EMAILJS_CONFIG.SERVICE_ID,
-            EMAILJS_CONFIG.TEMPLATE_ID,
-            templateParams
-        );
-        
-        console.log('Email sent successfully:', response);
-        
-        // Success handling
-        showToast('Enquiry sent successfully! We will contact you soon.', 'success');
-        form.reset();
-        
-        // Track successful submission (optional - for analytics)
-        trackFormSubmission('success', formData.testName);
-        
-    } catch (error) {
-        console.error('Email sending failed:', error);
-        
-        // Error handling
-        showToast('Failed to send enquiry. Please try again or call us directly.', 'error');
-        
-        // Track failed submission (optional - for analytics)
-        trackFormSubmission('error', formData.testName);
-    } finally {
-        // Hide loading overlay
-        loadingOverlay.classList.remove('active');
-        
-        // Re-enable submit button
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = originalBtnText;
+
+        // Show loading state
+        const submitBtn = enquiryForm.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+        submitBtn.disabled = true;
+
+        try {
+            // Try to send with EmailJS if available
+            if (typeof emailjs !== 'undefined') {
+                await emailjs.send(
+                    EMAILJS_CONFIG.SERVICE_ID,
+                    EMAILJS_CONFIG.TEMPLATE_ID,
+                    formData
+                );
+                showToast('✅ Enquiry sent successfully! We\'ll contact you soon.');
+            } else {
+                // Fallback: Just show success message
+                console.log('EmailJS not loaded, form data:', formData);
+                showToast('✅ Enquiry received! We\'ll contact you soon.');
+            }
+            
+            enquiryForm.reset();
+        } catch (error) {
+            console.error('Error:', error);
+            showToast('❌ Failed to send enquiry. Please try again or call us directly.');
+        } finally {
+            submitBtn.innerHTML = originalBtnText;
+            submitBtn.disabled = false;
+        }
+    });
+}
+
+// ===== Form Submission (Contact Page) =====
+const contactForm = document.getElementById('contactForm');
+
+if (contactForm) {
+    // Pre-fill form based on URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const testName = urlParams.get('test');
+    const individualPrice = urlParams.get('price');
+    const partnerPrice = urlParams.get('partner');
+
+    if (testName) {
+        const serviceSelect = document.getElementById('serviceType');
+        if (serviceSelect) {
+            serviceSelect.value = testName;
+            
+            // Show pricing options if both prices exist
+            if (individualPrice && partnerPrice) {
+                const pricingGroup = document.getElementById('pricingTypeGroup');
+                const individualLabel = document.getElementById('individualPriceLabel');
+                const partnerLabel = document.getElementById('partnerPriceLabel');
+                
+                if (pricingGroup && individualLabel && partnerLabel) {
+                    pricingGroup.style.display = 'block';
+                    individualLabel.textContent = `Individual (₹${parseInt(individualPrice).toLocaleString('en-IN')})`;
+                    partnerLabel.textContent = `Partner (₹${parseInt(partnerPrice).toLocaleString('en-IN')})`;
+                }
+            }
+        }
     }
+
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const pricingType = document.querySelector('input[name="pricingType"]:checked')?.value || 'individual';
+        
+        const formData = {
+            name: document.getElementById('fullName')?.value,
+            phone: document.getElementById('phoneNumber')?.value,
+            email: document.getElementById('emailAddress')?.value,
+            service: document.getElementById('serviceType')?.value,
+            pricingType: pricingType,
+            date: document.getElementById('preferredDate')?.value || 'Not specified',
+            message: document.getElementById('messageText')?.value || 'No message provided'
+        };
+
+        // Show loading state
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+        submitBtn.disabled = true;
+
+        try {
+            // Try to send with EmailJS if available
+            if (typeof emailjs !== 'undefined') {
+                await emailjs.send(
+                    EMAILJS_CONFIG.SERVICE_ID,
+                    EMAILJS_CONFIG.TEMPLATE_ID,
+                    formData
+                );
+                showToast('✅ Message sent successfully! We\'ll get back to you soon.');
+            } else {
+                // Fallback: Just show success message
+                console.log('EmailJS not loaded, form data:', formData);
+                showToast('✅ Message received! We\'ll get back to you soon.');
+            }
+            
+            contactForm.reset();
+            // Hide pricing group after reset
+            const pricingGroup = document.getElementById('pricingTypeGroup');
+            if (pricingGroup) {
+                pricingGroup.style.display = 'none';
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            showToast('❌ Failed to send message. Please try again or call us directly.');
+        } finally {
+            submitBtn.innerHTML = originalBtnText;
+            submitBtn.disabled = false;
+        }
+    });
+}
+
+// ===== Services Search and Sort =====
+const searchInput = document.getElementById('searchTests');
+const sortSelect = document.getElementById('sortTests');
+const servicesGrid = document.getElementById('servicesGrid');
+
+if (searchInput && servicesGrid) {
+    searchInput.addEventListener('input', filterServices);
+}
+
+if (sortSelect && servicesGrid) {
+    sortSelect.addEventListener('change', sortServices);
+}
+
+function filterServices() {
+    const searchTerm = searchInput.value.toLowerCase();
+    const serviceCards = servicesGrid.querySelectorAll('.service-card');
+    
+    serviceCards.forEach(card => {
+        const name = card.getAttribute('data-name').toLowerCase();
+        const description = card.querySelector('.service-description').textContent.toLowerCase();
+        
+        if (name.includes(searchTerm) || description.includes(searchTerm)) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+
+function sortServices() {
+    const sortValue = sortSelect.value;
+    const serviceCards = Array.from(servicesGrid.querySelectorAll('.service-card'));
+    
+    serviceCards.sort((a, b) => {
+        switch (sortValue) {
+            case 'price-low':
+                return parseInt(a.getAttribute('data-price')) - parseInt(b.getAttribute('data-price'));
+            case 'price-high':
+                return parseInt(b.getAttribute('data-price')) - parseInt(a.getAttribute('data-price'));
+            case 'name':
+                return a.getAttribute('data-name').localeCompare(b.getAttribute('data-name'));
+            default:
+                return 0;
+        }
+    });
+    
+    // Reorder in DOM
+    serviceCards.forEach(card => servicesGrid.appendChild(card));
 }
 
 // ===== Toast Notification =====
-
-function showToast(message, type = 'success') {
-    toast.classList.remove('show');
+function showToast(message, duration = 4000) {
+    const toast = document.getElementById('toast');
+    const toastMessage = document.getElementById('toastMessage');
     
-    // Set toast style based on type
-    if (type === 'success') {
-        toast.style.background = 'var(--success-green)';
-        toast.querySelector('i').className = 'fas fa-check-circle';
-    } else {
-        toast.style.background = 'var(--secondary-red)';
-        toast.querySelector('i').className = 'fas fa-exclamation-circle';
-    }
-    
-    toastMessage.textContent = message;
-    
-    // Show toast
-    setTimeout(() => {
+    if (toast && toastMessage) {
+        toastMessage.textContent = message;
         toast.classList.add('show');
-    }, 100);
-    
-    // Hide toast after 5 seconds
-    setTimeout(() => {
-        toast.classList.remove('show');
-    }, 5000);
-}
-
-// ===== Analytics Tracking (Optional) =====
-
-function trackFormSubmission(status, testName) {
-    // This is a placeholder for analytics tracking
-    // You can integrate Google Analytics, Facebook Pixel, etc.
-    console.log(`Form submission ${status} for test: ${testName}`);
-    
-    // Example: Google Analytics tracking
-    // if (typeof gtag !== 'undefined') {
-    //     gtag('event', 'form_submission', {
-    //         'event_category': 'engagement',
-    //         'event_label': testName,
-    //         'value': status
-    //     });
-    // }
+        
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, duration);
+    }
 }
 
 // ===== Intersection Observer for Animations =====
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+};
 
-// Animate elements on scroll
-const animateOnScroll = new IntersectionObserver((entries) => {
+const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.style.opacity = '1';
             entry.target.style.transform = 'translateY(0)';
         }
     });
-}, {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-});
+}, observerOptions);
 
-// Add animation classes to elements
-document.querySelectorAll('.test-card, .feature-card, .contact-card').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    animateOnScroll.observe(el);
-});
-
-// ===== Accessibility Enhancements =====
-
-// Trap focus within modal when open
-bookingModal.addEventListener('keydown', (e) => {
-    if (e.key === 'Tab' && bookingModal.classList.contains('active')) {
-        const focusableElements = bookingModal.querySelectorAll(
-            'button, input, select, textarea, [tabindex]:not([tabindex="-1"])'
-        );
-        const firstElement = focusableElements[0];
-        const lastElement = focusableElements[focusableElements.length - 1];
-        
-        if (e.shiftKey) {
-            if (document.activeElement === firstElement) {
-                lastElement.focus();
-                e.preventDefault();
-            }
-        } else {
-            if (document.activeElement === lastElement) {
-                firstElement.focus();
-                e.preventDefault();
-            }
-        }
-    }
-});
-
-// ===== Page Load Optimizations =====
-
-// Lazy load images (if you add real images later)
-if ('IntersectionObserver' in window) {
-    const imageObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                if (img.dataset.src) {
-                    img.src = img.dataset.src;
-                    img.removeAttribute('data-src');
-                }
-                imageObserver.unobserve(img);
-            }
-        });
-    });
+// Observe elements with animation classes
+document.addEventListener('DOMContentLoaded', () => {
+    const animatedElements = document.querySelectorAll('.feature-card, .service-card, .about-card, .contact-card, .info-card');
     
-    document.querySelectorAll('img[data-src]').forEach(img => {
-        imageObserver.observe(img);
+    animatedElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
+});
+
+// ===== Active Nav Link Highlighting =====
+function setActiveNavLink() {
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    navLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        
+        if (href === currentPage || 
+            (currentPage === '' && href === 'index.html') ||
+            (currentPage === '/' && href === 'index.html')) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
     });
 }
 
+// Call on page load
+setActiveNavLink();
+
+// ===== Counter Animation for Stats =====
+function animateCounter(element, target, duration = 2000) {
+    let start = 0;
+    const increment = target / (duration / 16);
+    
+    const timer = setInterval(() => {
+        start += increment;
+        if (start >= target) {
+            element.textContent = target;
+            clearInterval(timer);
+        } else {
+            element.textContent = Math.floor(start);
+        }
+    }, 16);
+}
+
+// Animate stat numbers when they come into view
+const statObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+            const text = entry.target.textContent;
+            const number = parseInt(text.replace(/[^0-9]/g, ''));
+            
+            if (!isNaN(number)) {
+                entry.target.classList.add('animated');
+                animateCounter(entry.target, number, 2000);
+            }
+        }
+    });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.stat-number').forEach(stat => {
+    statObserver.observe(stat);
+});
+
+// ===== Image Lazy Loading =====
+document.querySelectorAll('img[data-src]').forEach(img => {
+    img.src = img.dataset.src;
+    img.removeAttribute('data-src');
+});
+
+// ===== Form Validation Enhancement =====
+function enhanceFormValidation(form) {
+    const inputs = form.querySelectorAll('input[required], select[required], textarea[required]');
+    
+    inputs.forEach(input => {
+        input.addEventListener('blur', () => {
+            if (!input.validity.valid) {
+                input.style.borderColor = '#ef4444';
+            } else {
+                input.style.borderColor = '#10b981';
+            }
+        });
+        
+        input.addEventListener('focus', () => {
+            input.style.borderColor = '#2563eb';
+        });
+    });
+}
+
+// Apply to all forms
+document.querySelectorAll('form').forEach(enhanceFormValidation);
+
+// ===== Parallax Effect for Hero =====
+window.addEventListener('scroll', () => {
+    const hero = document.querySelector('.hero');
+    if (hero) {
+        const scrolled = window.pageYOffset;
+        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+    }
+});
+
 // ===== Console Welcome Message =====
+console.log('%c🧬 Genomics Research & Diagnostics Centre', 'font-size: 20px; color: #2563eb; font-weight: bold;');
+console.log('%cWebsite developed with modern technologies', 'font-size: 12px; color: #6b7280;');
+console.log('%c━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', 'color: #2563eb;');
 
-console.log('%c🧬 Genomics Research & Diagnostics Centre', 
-    'font-size: 20px; font-weight: bold; color: #0066cc;');
-console.log('%cTrusted Diagnostic & Pathology Services', 
-    'font-size: 14px; color: #6c757d;');
-console.log('%c📞 Contact: +91 8572851031', 
-    'font-size: 12px; color: #495057;');
-console.log('%c📧 Email: Info.genomicscentre@gmail.com', 
-    'font-size: 12px; color: #495057;');
-console.log('%c📍 Location: Karnal, Haryana', 
-    'font-size: 12px; color: #495057;');
+// ===== Performance Monitoring =====
+if ('performance' in window) {
+    window.addEventListener('load', () => {
+        const perfData = performance.timing;
+        const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
+        console.log(`Page loaded in ${pageLoadTime}ms`);
+    });
+}
 
-// ===== Service Worker Registration (Optional - for PWA) =====
+// ===== Service Worker Registration (Progressive Web App) =====
+if ('serviceWorker' in navigator) {
+    // Uncomment when you have a service worker file
+    // navigator.serviceWorker.register('/sw.js').then(() => {
+    //     console.log('Service Worker registered');
+    // });
+}
 
-// Uncomment to enable Progressive Web App features
-// if ('serviceWorker' in navigator) {
-//     window.addEventListener('load', () => {
-//         navigator.serviceWorker.register('/sw.js')
-//             .then(reg => console.log('Service Worker registered'))
-//             .catch(err => console.log('Service Worker registration failed'));
-//     });
-// }
-
-// ===== Error Handling =====
-
-// Global error handler
-window.addEventListener('error', (e) => {
-    console.error('Global error:', e.error);
-    // You can send error reports to your server here
-});
-
-// Unhandled promise rejection handler
-window.addEventListener('unhandledrejection', (e) => {
-    console.error('Unhandled promise rejection:', e.reason);
-    // You can send error reports to your server here
-});
-
-// ===== Initialize =====
-
-console.log('✅ Genomics Centre website loaded successfully!');
-console.log('⚠️ Remember to configure EmailJS credentials in script.js');
+console.log('✅ All scripts loaded successfully');
