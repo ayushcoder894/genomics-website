@@ -1896,10 +1896,14 @@ section {
         max-height: 0;
         overflow: hidden;
         transition: max-height var(--transition-normal);
+        visibility: hidden;
+        opacity: 0;
     }
     
     .nav-menu.active {
         max-height: 500px;
+        visibility: visible;
+        opacity: 1;
     }
     
     .hero-title { font-size: 2rem; }
