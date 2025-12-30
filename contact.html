@@ -13,8 +13,7 @@
     <nav class="navbar" id="navbar">
         <div class="container">
             <div class="nav-brand">
-                <img src="logo.png" alt="Genomics Logo" class="nav-logo">
-                <span>Genomics</span>
+                <img src="NewLOGO.png" alt="Genomics Logo" class="nav-logo">
             </div>
             <button class="nav-toggle" id="navToggle">
                 <span></span>
@@ -59,8 +58,8 @@
                     </div>
                     <h3>Visit Our Lab</h3>
                     <p>Genomics Research & Diagnostics Centre<br>
-                    Vasant Vihar, Karnal<br>
-                    Haryana - 132001, India</p>
+                    97, Street No 8, Vasant Vihar<br>
+                    Karnal, Haryana 132001</p>
                     <a href="#" class="contact-link">Get Directions <i class="fas fa-arrow-right"></i></a>
                 </div>
 
@@ -69,10 +68,9 @@
                         <i class="fas fa-phone-alt"></i>
                     </div>
                     <h3>Call Us</h3>
-                    <p>Phone: +91 123 456 7890<br>
-                    Toll Free: 1800 123 4567<br>
+                    <p>Phone: +91 8572851031<br>
                     Mon-Sat: 9:00 AM - 6:00 PM</p>
-                    <a href="tel:+911234567890" class="contact-link">Call Now <i class="fas fa-arrow-right"></i></a>
+                    <a href="tel:+918572851031" class="contact-link">Call Now <i class="fas fa-arrow-right"></i></a>
                 </div>
 
                 <div class="contact-card">
@@ -80,10 +78,10 @@
                         <i class="fas fa-envelope"></i>
                     </div>
                     <h3>Email Us</h3>
-                    <p>General: info@genomicscentre.com<br>
-                    Support: support@genomicscentre.com<br>
+                    <p>General: info.genomicscentre@gmail.com<br>
+                    Support: info.genomicscentre@gmail.com<br>
                     24/7 Response Time</p>
-                    <a href="mailto:info@genomicscentre.com" class="contact-link">Send Email <i class="fas fa-arrow-right"></i></a>
+                    <a href="mailto:info.genomicscentre@gmail.com" class="contact-link">Send Email <i class="fas fa-arrow-right"></i></a>
                 </div>
 
                 <div class="contact-card">
@@ -112,18 +110,18 @@
                         <p class="section-description">Fill out the form below and we'll get back to you as soon as possible.</p>
                     </div>
 
-                    <form id="contactForm" class="modern-form">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="fullName">
-                                    <i class="fas fa-user"></i> Full Name *
-                                </label>
-                                <input 
-                                    type="text" 
-                                    id="fullName" 
-                                    name="fullName" 
-                                    required 
-                                    placeholder="Enter your full name"
+                    <form id="contactForm" class="modern-form" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="prescriptionLinkContact">
+                                <i class="fas fa-link"></i> Share prescription link (optional)
+                            </label>
+                            <input 
+                                type="url" 
+                                id="prescriptionLinkContact" 
+                                name="prescriptionLink" 
+                                placeholder="https://..."
+                            >
+                        </div>
                                 >
                             </div>
 
@@ -134,9 +132,9 @@
                                 <input 
                                     type="tel" 
                                     id="phoneNumber" 
-                                    name="phoneNumber" 
+                                    name="phone" 
                                     required 
-                                    placeholder="+91 123 456 7890"
+                                    placeholder="+91 8572851031"
                                 >
                             </div>
                         </div>
@@ -148,7 +146,7 @@
                             <input 
                                 type="email" 
                                 id="emailAddress" 
-                                name="emailAddress" 
+                                    name="email" 
                                 required 
                                 placeholder="your.email@example.com"
                             >
@@ -158,7 +156,7 @@
                             <label for="serviceType">
                                 <i class="fas fa-flask"></i> Service Type *
                             </label>
-                            <select id="serviceType" name="serviceType" required>
+                            <select id="serviceType" name="service" required>
                                 <option value="">Select a service</option>
                                 <option value="DNA Wellness Test">DNA Wellness Test</option>
                                 <option value="Paternity Test">Paternity Test</option>
@@ -213,7 +211,7 @@
                             <input 
                                 type="date" 
                                 id="preferredDate" 
-                                name="preferredDate"
+                                name="date"
                             >
                         </div>
 
@@ -223,10 +221,22 @@
                             </label>
                             <textarea 
                                 id="messageText" 
-                                name="messageText" 
+                                name="message" 
                                 rows="5" 
                                 placeholder="Tell us about your requirements, questions, or any special instructions..."
                             ></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="prescriptionContact">
+                                <i class="fas fa-file-medical"></i> Upload Prescription (optional)
+                            </label>
+                            <input 
+                                type="file" 
+                                id="prescriptionContact" 
+                                name="prescription" 
+                                accept=".pdf,.jpg,.jpeg,.png"
+                            >
                         </div>
 
                         <div class="form-group checkbox-group">
@@ -254,57 +264,11 @@
                     </div>
 
                     <div class="sidebar-card">
-                        <h3><i class="fas fa-download"></i> Download Resources</h3>
-                        <ul class="resource-list">
-                            <li>
-                                <a href="#">
-                                    <i class="fas fa-file-pdf"></i>
-                                    <span>Test Catalog (PDF)</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fas fa-file-pdf"></i>
-                                    <span>Price List (PDF)</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fas fa-file-pdf"></i>
-                                    <span>Sample Collection Guide</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="sidebar-card">
                         <h3><i class="fas fa-headset"></i> Emergency Support</h3>
                         <p>For urgent inquiries, call our 24/7 helpline:</p>
-                        <a href="tel:+911234567890" class="emergency-number">
-                            <i class="fas fa-phone-volume"></i> +91 123 456 7890
+                        <a href="tel:+918572851031" class="emergency-number">
+                            <i class="fas fa-phone-volume"></i> +91 8572851031
                         </a>
-                    </div>
-
-                    <div class="sidebar-card social-card">
-                        <h3><i class="fas fa-share-alt"></i> Follow Us</h3>
-                        <div class="social-links-large">
-                            <a href="#" class="social-btn facebook">
-                                <i class="fab fa-facebook-f"></i>
-                                <span>Facebook</span>
-                            </a>
-                            <a href="#" class="social-btn twitter">
-                                <i class="fab fa-twitter"></i>
-                                <span>Twitter</span>
-                            </a>
-                            <a href="#" class="social-btn instagram">
-                                <i class="fab fa-instagram"></i>
-                                <span>Instagram</span>
-                            </a>
-                            <a href="#" class="social-btn linkedin">
-                                <i class="fab fa-linkedin-in"></i>
-                                <span>LinkedIn</span>
-                            </a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -320,9 +284,16 @@
                 <div class="section-divider"></div>
             </div>
             <div class="map-placeholder">
-                <i class="fas fa-map-marked-alt"></i>
-                <p>Vasant Vihar, Karnal, Haryana</p>
-                <a href="https://maps.google.com" target="_blank" class="btn btn-primary">Open in Google Maps</a>
+                <div class="map-embed">
+                    <iframe
+                        title="Genomics Research & Diagnostic Centre"
+                        src="https://www.google.com/maps?q=GENOMICS+RESEARCH+%26+DIAGNOSTIC+CENTRE,+97+Street+No+8,+Vasant+Vihar,+Karnal,+Haryana+132001&output=embed"
+                        allowfullscreen
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <p>97, Street No 8, Vasant Vihar, Karnal, Haryana 132001</p>
+                <a href="https://maps.app.goo.gl/wVCiw8xAN8syPiaaA?g_st=iw" target="_blank" rel="noopener" class="btn btn-primary">Get Directions</a>
             </div>
         </div>
     </section>
@@ -333,8 +304,8 @@
             <div class="footer-content">
                 <div class="footer-col">
                     <div class="footer-brand">
-                        <i class="fas fa-dna"></i>
-                        <span>Genomics</span>
+                        <img src="logo.png" alt="Genomics Logo" class="nav-logo">
+                        <span>Genomics Research & Diagnostics Centre</span>
                     </div>
                     <p class="footer-description">
                         Your trusted partner in genetic testing and diagnostics. Committed to excellence, accuracy, and patient care.
@@ -342,7 +313,6 @@
                     <div class="footer-social">
                         <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
@@ -369,15 +339,15 @@
                     <ul class="footer-contact">
                         <li>
                             <i class="fas fa-map-marker-alt"></i>
-                            <span>Vasant Vihar, Karnal<br>Haryana, India</span>
+                            <span>97, Street No 8, Vasant Vihar<br>Karnal, Haryana 132001</span>
                         </li>
                         <li>
                             <i class="fas fa-phone"></i>
-                            <span>+91 123 456 7890</span>
+                            <span>+91 8572851031</span>
                         </li>
                         <li>
                             <i class="fas fa-envelope"></i>
-                            <span>info@genomicscentre.com</span>
+                            <span>info.genomicscentre@gmail.com</span>
                         </li>
                     </ul>
                 </div>

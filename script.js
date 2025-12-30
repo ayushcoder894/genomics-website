@@ -19,6 +19,38 @@ if (typeof emailjs !== 'undefined') {
 const navbar = document.getElementById('navbar');
 const navToggle = document.getElementById('navToggle');
 const navMenu = document.getElementById('navMenu');
+const navSearchInput = document.querySelector('.nav-search-input');
+let navSearchResults;
+
+// Master list of services for quick availability checks
+const SERVICES_LIST = [
+    'DNA Wellness Test',
+    'Sample Viability',
+    'STR Analysis',
+    'Paternity Test',
+    'Prenatal Paternity',
+    'Maternity Test',
+    'Siblings Test',
+    'Grandparentage Test',
+    'Avuncular Test',
+    'YSTR Analysis',
+    'mtDNA Analysis',
+    'Legal/Transplant Autosomal Analysis',
+    'Legal/Transplant YSTR Analysis',
+    'Legal/Transplant mtDNA Analysis',
+    'Prenatal Paternity + NIPT',
+    'Whole Genome Sequencing',
+    'Infertility NGS Panel',
+    'Chromosomal Microarray (CMA)',
+    'Karyotyping (H & F)',
+    'POC by NGS',
+    'Embrology by NGS',
+    'Heredatory Panel',
+    'Multigene Panel (72 Gene)',
+    'Multigene Panel (350 Gene)',
+    'Multigene Panel (1212 Gene)',
+    'NIPT'
+];
 const scrollTopBtn = document.getElementById('scrollTop');
 
 // ===== Navigation Toggle (Mobile) =====
@@ -131,14 +163,6 @@ const enquiryForm = document.getElementById('enquiryForm');
 if (enquiryForm) {
     enquiryForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
-        const formData = {
-            name: document.getElementById('name')?.value,
-            phone: document.getElementById('phone')?.value,
-            email: document.getElementById('email')?.value,
-            service: document.getElementById('service')?.value,
-            message: document.getElementById('message')?.value || 'No message provided'
-        };
 
         // Show loading state
         const submitBtn = enquiryForm.querySelector('button[type="submit"]');
@@ -147,20 +171,17 @@ if (enquiryForm) {
         submitBtn.disabled = true;
 
         try {
-            // Try to send with EmailJS if available
             if (typeof emailjs !== 'undefined') {
-                await emailjs.send(
+                await emailjs.sendForm(
                     EMAILJS_CONFIG.SERVICE_ID,
                     EMAILJS_CONFIG.TEMPLATE_ID,
-                    formData
+                    enquiryForm
                 );
                 showToast('✅ Enquiry sent successfully! We\'ll contact you soon.');
             } else {
-                // Fallback: Just show success message
-                console.log('EmailJS not loaded, form data:', formData);
+                console.log('EmailJS not loaded, form data via FormData');
                 showToast('✅ Enquiry received! We\'ll contact you soon.');
             }
-            
             enquiryForm.reset();
         } catch (error) {
             console.error('Error:', error);
@@ -204,18 +225,16 @@ if (contactForm) {
 
     contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
-        const pricingType = document.querySelector('input[name="pricingType"]:checked')?.value || 'individual';
-        
-        const formData = {
-            name: document.getElementById('fullName')?.value,
-            phone: document.getElementById('phoneNumber')?.value,
-            email: document.getElementById('emailAddress')?.value,
-            service: document.getElementById('serviceType')?.value,
-            pricingType: pricingType,
-            date: document.getElementById('preferredDate')?.value || 'Not specified',
-            message: document.getElementById('messageText')?.value || 'No message provided'
-        };
+
+        // Ensure pricingType field exists for sendForm
+        const pricingType = document.querySelector('input[name="pricingType"]:checked');
+        if (!pricingType) {
+            const hiddenPricing = document.createElement('input');
+            hiddenPricing.type = 'hidden';
+            hiddenPricing.name = 'pricingType';
+            hiddenPricing.value = 'individual';
+            contactForm.appendChild(hiddenPricing);
+        }
 
         // Show loading state
         const submitBtn = contactForm.querySelector('button[type="submit"]');
@@ -224,17 +243,15 @@ if (contactForm) {
         submitBtn.disabled = true;
 
         try {
-            // Try to send with EmailJS if available
             if (typeof emailjs !== 'undefined') {
-                await emailjs.send(
+                await emailjs.sendForm(
                     EMAILJS_CONFIG.SERVICE_ID,
                     EMAILJS_CONFIG.TEMPLATE_ID,
-                    formData
+                    contactForm
                 );
                 showToast('✅ Message sent successfully! We\'ll get back to you soon.');
             } else {
-                // Fallback: Just show success message
-                console.log('EmailJS not loaded, form data:', formData);
+                console.log('EmailJS not loaded, form data via FormData');
                 showToast('✅ Message received! We\'ll get back to you soon.');
             }
             
@@ -260,15 +277,117 @@ const sortSelect = document.getElementById('sortTests');
 const servicesGrid = document.getElementById('servicesGrid');
 
 if (searchInput && servicesGrid) {
-    searchInput.addEventListener('input', filterServices);
+    searchInput.addEventListener('input', () => filterServices());
 }
 
 if (sortSelect && servicesGrid) {
     sortSelect.addEventListener('change', sortServices);
 }
 
-function filterServices() {
-    const searchTerm = searchInput.value.toLowerCase();
+function applyServiceSearch(term) {
+    if (searchInput) {
+        searchInput.value = term;
+    }
+    filterServices(term);
+}
+
+// Sync header search with services filtering and support redirect from other pages
+function getServiceMatches(term) {
+    if (!term) return [];
+    const lower = term.toLowerCase();
+    return SERVICES_LIST.filter(name => name.toLowerCase().includes(lower));
+}
+
+function ensureNavSearchResults() {
+    if (!navSearchInput) return null;
+    if (navSearchResults) return navSearchResults;
+    const container = document.createElement('div');
+    container.className = 'nav-search-results';
+    navSearchInput.parentElement.appendChild(container);
+    navSearchResults = container;
+    return navSearchResults;
+}
+
+function renderNavSearchResults(term) {
+    const container = ensureNavSearchResults();
+    if (!container) return;
+
+    container.innerHTML = '';
+    if (!term || term.length < 2) {
+        container.classList.remove('show');
+        return;
+    }
+
+    const matches = getServiceMatches(term);
+    if (matches.length === 0) {
+        const noResult = document.createElement('div');
+        noResult.className = 'nav-search-result no-result';
+        noResult.textContent = 'No matching service';
+        container.appendChild(noResult);
+    } else {
+        matches.slice(0, 5).forEach(name => {
+            const item = document.createElement('div');
+            item.className = 'nav-search-result';
+            item.textContent = name;
+            item.addEventListener('click', () => {
+                navSearchInput.value = name;
+                handleNavSearch();
+            });
+            container.appendChild(item);
+        });
+    }
+
+    container.classList.add('show');
+}
+
+function handleNavSearch() {
+    if (!navSearchInput) return;
+    const term = navSearchInput.value.trim();
+    if (!term) return;
+
+    const matches = getServiceMatches(term);
+    if (matches.length === 0) {
+        showToast(`No matching service for "${term}"`);
+        renderNavSearchResults(term);
+        return;
+    }
+
+    const onServicesPage = Boolean(servicesGrid);
+    if (onServicesPage) {
+        applyServiceSearch(term);
+    } else {
+        window.location.href = `services.html?search=${encodeURIComponent(term)}`;
+    }
+}
+
+if (navSearchInput) {
+    navSearchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            handleNavSearch();
+        }
+    });
+
+    navSearchInput.addEventListener('input', () => {
+        renderNavSearchResults(navSearchInput.value.trim());
+        if (servicesGrid) {
+            applyServiceSearch(navSearchInput.value);
+        }
+    });
+
+    navSearchInput.addEventListener('focus', () => {
+        renderNavSearchResults(navSearchInput.value.trim());
+    });
+
+    navSearchInput.addEventListener('blur', () => {
+        setTimeout(() => {
+            if (navSearchResults) navSearchResults.classList.remove('show');
+        }, 150);
+    });
+}
+
+function filterServices(term) {
+    const searchTerm = (term ?? searchInput?.value ?? '').toLowerCase().trim();
     const serviceCards = servicesGrid.querySelectorAll('.service-card');
     
     serviceCards.forEach(card => {
@@ -305,18 +424,112 @@ function sortServices() {
 }
 
 // ===== Toast Notification =====
+function ensureToast() {
+    let toast = document.getElementById('toast');
+    let toastMessage = document.getElementById('toastMessage');
+
+    if (!toast) {
+        toast = document.createElement('div');
+        toast.className = 'toast';
+        toast.id = 'toast';
+
+        const icon = document.createElement('i');
+        icon.className = 'fas fa-check-circle';
+
+        toastMessage = document.createElement('span');
+        toastMessage.id = 'toastMessage';
+
+        toast.appendChild(icon);
+        toast.appendChild(toastMessage);
+        document.body.appendChild(toast);
+    } else if (!toastMessage) {
+        toastMessage = document.createElement('span');
+        toastMessage.id = 'toastMessage';
+        toast.appendChild(toastMessage);
+    }
+
+    return { toast, toastMessage };
+}
+
 function showToast(message, duration = 4000) {
-    const toast = document.getElementById('toast');
-    const toastMessage = document.getElementById('toastMessage');
-    
+    const { toast, toastMessage } = ensureToast();
+
     if (toast && toastMessage) {
         toastMessage.textContent = message;
         toast.classList.add('show');
-        
+
         setTimeout(() => {
             toast.classList.remove('show');
         }, duration);
     }
+}
+
+// ===== File Validation =====
+// ===== Floating Action Buttons =====
+function createFloatingActions() {
+    if (document.querySelector('.floating-actions')) return;
+
+    const actions = [
+        {
+            key: 'whatsapp',
+            label: 'WhatsApp Us',
+            icon: 'fab fa-whatsapp',
+            href: 'https://wa.me/918572851031?text=Hi%20Genomics%20Centre%2C%20I%27d%20like%20to%20enquire%20about%20tests.',
+            target: '_blank'
+        },
+        {
+            key: 'enquiry',
+            label: 'Enquire Now',
+            icon: 'fas fa-comments',
+            href: '#enquiry'
+        },
+        {
+            key: 'call',
+            label: 'Call Us',
+            icon: 'fas fa-phone',
+            href: 'tel:+918572851031'
+        }
+    ];
+
+    const container = document.createElement('div');
+    container.className = 'floating-actions';
+
+    actions.forEach(action => {
+        const link = document.createElement('a');
+        link.className = `fab-btn ${action.key}`;
+        link.href = action.href;
+        link.setAttribute('aria-label', action.label);
+        if (action.target) {
+            link.target = action.target;
+            link.rel = 'noopener';
+        }
+
+        const iconEl = document.createElement('i');
+        iconEl.className = action.icon;
+
+        const labelEl = document.createElement('span');
+        labelEl.className = 'fab-label';
+        labelEl.textContent = action.label;
+
+        link.appendChild(iconEl);
+        link.appendChild(labelEl);
+
+        if (action.key === 'enquiry') {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.getElementById('enquiry') || document.getElementById('contact-form');
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } else {
+                    window.location.href = 'contact.html#contact-form';
+                }
+            });
+        }
+
+        container.appendChild(link);
+    });
+
+    document.body.appendChild(container);
 }
 
 // ===== Intersection Observer for Animations =====
@@ -344,6 +557,22 @@ document.addEventListener('DOMContentLoaded', () => {
         el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(el);
     });
+
+    createFloatingActions();
+
+    // Apply search term from URL when landing on services page via header search
+    if (servicesGrid && searchInput) {
+        const params = new URLSearchParams(window.location.search);
+        const presetSearch = params.get('search');
+        if (presetSearch) {
+            searchInput.value = presetSearch;
+            filterServices(presetSearch);
+            // Keep nav search in sync when present
+            if (navSearchInput) {
+                navSearchInput.value = presetSearch;
+            }
+        }
+    }
 });
 
 // ===== Active Nav Link Highlighting =====
@@ -466,6 +695,11 @@ const bookingModal = document.getElementById('bookingModal');
 const modalClose = document.getElementById('modalClose');
 const bookingForm = document.getElementById('bookingForm');
 const bookingTestInput = document.getElementById('bookingTest');
+const pricingTypeGroup = document.getElementById('pricingTypeGroup');
+const individualPriceLabel = document.getElementById('individualPriceLabel');
+const partnerPriceLabel = document.getElementById('partnerPriceLabel');
+const pricingIndividual = document.getElementById('pricingIndividual');
+const pricingPartner = document.getElementById('pricingPartner');
 
 // Handle Book Now button clicks
 document.addEventListener('click', (e) => {
@@ -483,8 +717,24 @@ document.addEventListener('click', (e) => {
         } else if (price) {
             testDisplay += ` - ₹${parseInt(price).toLocaleString('en-IN')}`;
         }
-        
+
         bookingTestInput.value = testDisplay;
+
+        if (pricingTypeGroup && individualPriceLabel && partnerPriceLabel && pricingIndividual && pricingPartner) {
+            pricingIndividual.checked = true;
+            pricingIndividual.disabled = false;
+            individualPriceLabel.textContent = price ? `Individual (₹${parseInt(price).toLocaleString('en-IN')})` : 'Individual';
+
+            if (partnerPrice) {
+                pricingPartner.disabled = false;
+                partnerPriceLabel.textContent = `Partner (₹${parseInt(partnerPrice).toLocaleString('en-IN')})`;
+            } else {
+                pricingPartner.disabled = true;
+                pricingPartner.checked = false;
+                partnerPriceLabel.textContent = 'Partner (not available)';
+            }
+        }
+
         bookingModal.classList.add('show');
         document.body.style.overflow = 'hidden';
     }
@@ -512,15 +762,17 @@ if (bookingModal) {
 if (bookingForm) {
     bookingForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
-        const formData = {
-            name: document.getElementById('bookingName').value,
-            email: document.getElementById('bookingEmail').value,
-            phone: document.getElementById('bookingPhone').value,
-            test: document.getElementById('bookingTest').value,
-            message: document.getElementById('bookingMessage').value
-        };
-        
+
+        // Ensure pricingType exists
+        const pricingType = document.querySelector('input[name="pricingType"]:checked');
+        if (!pricingType) {
+            const hiddenPricing = document.createElement('input');
+            hiddenPricing.type = 'hidden';
+            hiddenPricing.name = 'pricingType';
+            hiddenPricing.value = 'individual';
+            bookingForm.appendChild(hiddenPricing);
+        }
+
         // Show loading state
         const submitBtn = bookingForm.querySelector('button[type="submit"]');
         const originalText = submitBtn.innerHTML;
@@ -528,22 +780,14 @@ if (bookingForm) {
         submitBtn.disabled = true;
         
         try {
-            // Send email using EmailJS
             if (typeof emailjs !== 'undefined') {
-                await emailjs.send(
+                await emailjs.sendForm(
                     EMAILJS_CONFIG.SERVICE_ID,
                     EMAILJS_CONFIG.TEMPLATE_ID,
-                    {
-                        from_name: formData.name,
-                        from_email: formData.email,
-                        phone: formData.phone,
-                        service: formData.test,
-                        message: formData.message || 'No additional message'
-                    }
+                    bookingForm
                 );
             }
             
-            // Show success message
             showToast('Booking request sent successfully! We will contact you soon.');
             bookingModal.classList.remove('show');
             document.body.style.overflow = '';
