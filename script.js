@@ -461,4 +461,101 @@ if ('serviceWorker' in navigator) {
     // });
 }
 
+// ===== Booking Modal (Services Page) =====
+const bookingModal = document.getElementById('bookingModal');
+const modalClose = document.getElementById('modalClose');
+const bookingForm = document.getElementById('bookingForm');
+const bookingTestInput = document.getElementById('bookingTest');
+
+// Handle Book Now button clicks
+document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('book-now-btn') || e.target.closest('.book-now-btn')) {
+        e.preventDefault();
+        const btn = e.target.classList.contains('book-now-btn') ? e.target : e.target.closest('.book-now-btn');
+        const testName = btn.dataset.test;
+        const price = btn.dataset.price;
+        const partnerPrice = btn.dataset.partner;
+        
+        // Format the test display with pricing
+        let testDisplay = testName;
+        if (price && partnerPrice) {
+            testDisplay += ` (Individual - ₹${parseInt(price).toLocaleString('en-IN')})`;
+        } else if (price) {
+            testDisplay += ` - ₹${parseInt(price).toLocaleString('en-IN')}`;
+        }
+        
+        bookingTestInput.value = testDisplay;
+        bookingModal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+});
+
+// Close modal
+if (modalClose) {
+    modalClose.addEventListener('click', () => {
+        bookingModal.classList.remove('show');
+        document.body.style.overflow = '';
+    });
+}
+
+// Close modal on backdrop click
+if (bookingModal) {
+    bookingModal.addEventListener('click', (e) => {
+        if (e.target === bookingModal) {
+            bookingModal.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+    });
+}
+
+// Handle booking form submission
+if (bookingForm) {
+    bookingForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const formData = {
+            name: document.getElementById('bookingName').value,
+            email: document.getElementById('bookingEmail').value,
+            phone: document.getElementById('bookingPhone').value,
+            test: document.getElementById('bookingTest').value,
+            message: document.getElementById('bookingMessage').value
+        };
+        
+        // Show loading state
+        const submitBtn = bookingForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+        submitBtn.disabled = true;
+        
+        try {
+            // Send email using EmailJS
+            if (typeof emailjs !== 'undefined') {
+                await emailjs.send(
+                    EMAILJS_CONFIG.SERVICE_ID,
+                    EMAILJS_CONFIG.TEMPLATE_ID,
+                    {
+                        from_name: formData.name,
+                        from_email: formData.email,
+                        phone: formData.phone,
+                        service: formData.test,
+                        message: formData.message || 'No additional message'
+                    }
+                );
+            }
+            
+            // Show success message
+            showToast('Booking request sent successfully! We will contact you soon.');
+            bookingModal.classList.remove('show');
+            document.body.style.overflow = '';
+            bookingForm.reset();
+        } catch (error) {
+            console.error('Booking error:', error);
+            showToast('Failed to send booking request. Please try again.', 'error');
+        } finally {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }
+    });
+}
+
 console.log('✅ All scripts loaded successfully');
