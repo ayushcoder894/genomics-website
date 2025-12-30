@@ -130,7 +130,7 @@ h6 { font-size: 1.125rem; }
     z-index: 1000;
     transition: var(--transition-normal);
     height: auto;
-    min-height: 88px;
+    min-height: auto;
     overflow: visible;
 }
 
@@ -139,17 +139,17 @@ h6 { font-size: 1.125rem; }
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 0.5rem var(--spacing-lg);
+    padding: 0 var(--spacing-sm);
     max-width: 100%;
     height: auto;
     min-height: inherit;
-    gap: var(--spacing-lg);
+    gap: var(--spacing-sm);
 }
 
 .nav-top-row {
     display: flex;
     align-items: center;
-    gap: var(--spacing-lg);
+    gap: var(--spacing-md);
 }
 
 .nav-brand {
@@ -234,10 +234,10 @@ h6 { font-size: 1.125rem; }
 }
 
 .nav-logo {
-    height: clamp(72px, 10vw, 110px);
-    max-height: 110px;
+    height: 60px;
+    max-height: 60px;
     width: auto;
-    max-width: 260px;
+    max-width: 160px;
     object-fit: contain;
     display: block;
     transform: none;
@@ -1586,6 +1586,9 @@ section {
     text-align: center;
     box-shadow: var(--shadow-lg);
     transition: var(--transition-normal);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .contact-card:hover {
@@ -1614,6 +1617,7 @@ section {
     color: var(--gray-600);
     margin-bottom: var(--spacing-md);
     line-height: 1.8;
+    flex-grow: 1;
 }
 
 .contact-link {
@@ -1622,8 +1626,10 @@ section {
     font-weight: 600;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
     transition: var(--transition-fast);
+    margin-top: auto;
 }
 
 .contact-link:hover {
@@ -1900,7 +1906,7 @@ section {
     .hero-subtitle { font-size: 1.125rem; }
     .hero-buttons { flex-direction: column; }
     .hero-stats { grid-template-columns: 1fr; }
-    .nav-logo { height: 72px; max-height: 72px; max-width: 200px; transform: none; }
+    .nav-logo { height: 48px; max-height: 48px; max-width: 150px; transform: none; }
     
     .enquiry-content { grid-template-columns: 1fr; }
     .form-row { grid-template-columns: 1fr; }
