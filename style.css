@@ -1885,6 +1885,7 @@ section {
     .nav-toggle { display: flex; }
     
     .nav-menu {
+        display: none;
         position: absolute;
         top: 100%;
         left: 0;
@@ -1893,17 +1894,10 @@ section {
         flex-direction: column;
         padding: var(--spacing-md);
         box-shadow: var(--shadow-lg);
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height var(--transition-normal);
-        visibility: hidden;
-        opacity: 0;
     }
     
     .nav-menu.active {
-        max-height: 500px;
-        visibility: visible;
-        opacity: 1;
+        display: flex;
     }
     
     .hero-title { font-size: 2rem; }
